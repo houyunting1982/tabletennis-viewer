@@ -41,7 +41,7 @@ export async function loadCameraTrack(
   return { frames };
 }
 
-async function decodeFrame(url: string): Promise<DecodedFrame> {
+export async function decodeFrame(url: string): Promise<DecodedFrame> {
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`Failed to load frame (${response.status}): ${url}`);

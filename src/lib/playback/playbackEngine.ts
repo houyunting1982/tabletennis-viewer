@@ -1,6 +1,12 @@
-import { loadCameraTrack, releaseCameraTrack } from "./cameraTrackLoader";
 import { FrameClock } from "./frameClock";
 import { fetchManifest } from "./manifest";
+import {
+  createEmptyFrameCache,
+  isSliceReady,
+  loadTechniqueFrameSlices,
+  releaseFrameCache,
+  type FrameCache,
+} from "./techniqueBufferLoader";
 import type {
   DecodedFrame,
   PlaybackListener,
@@ -20,8 +26,7 @@ export class PlaybackEngine {
   private bufferTotal = 0;
   private playbackRate = DEFAULT_PLAYBACK_RATE;
   private error: string | null = null;
-  private currentTrack: Array<DecodedFrame | undefined> = [];
-  private readonly trackCache = new Map<string, DecodedFrame[]>();
+  private readonly frameCache: FrameCache = new Map();
   private loadingToken = 0;
   private readonly listeners = new Set<PlaybackListener>();
   private readonly clock: FrameClock;
@@ -50,7 +55,7 @@ export class PlaybackEngine {
     try {
       this.manifest = await fetchManifest(url);
       this.clock.setFps(this.manifest.timing.fps);
-      await this.loadCurrentCamera();
+      await this.loadTechniqueBuffers();
     } catch (err) {
       this.status = "idle";
       this.error = err instanceof Error ? err.message : "Failed to load manifest";
@@ -58,23 +63,23 @@ export class PlaybackEngine {
     }
   }
 
-  async setCameraIndex(index: number) {
+  setCameraIndex(index: number) {
     if (!this.manifest) {
       return;
     }
 
     const clamped = clamp(index, 0, this.manifest.cameras.length - 1);
-    if (clamped === this.cameraIndex && this.status === "ready") {
+    if (clamped === this.cameraIndex) {
       return;
     }
 
     this.pause();
     this.cameraIndex = clamped;
-    await this.loadCurrentCamera();
+    this.emit();
   }
 
   setFrameIndex(index: number) {
-    if (!this.manifest || this.currentTrack.length === 0) {
+    if (!this.manifest) {
       return;
     }
 
@@ -87,7 +92,7 @@ export class PlaybackEngine {
   }
 
   stepFrame(delta: number) {
-    if (!this.manifest || this.currentTrack.length === 0) {
+    if (!this.manifest) {
       return;
     }
 
@@ -143,7 +148,20 @@ export class PlaybackEngine {
   }
 
   getCurrentFrame(): DecodedFrame | null {
-    return this.currentTrack[this.frameIndex] ?? null;
+    if (!this.manifest) {
+      return null;
+    }
+
+    const cameraKey = this.manifest.cameras[this.cameraIndex].key;
+    return this.frameCache.get(cameraKey)?.[this.frameIndex] ?? null;
+  }
+
+  isCurrentSliceReady(): boolean {
+    if (!this.manifest) {
+      return false;
+    }
+
+    return isSliceReady(this.manifest, this.frameCache, this.frameIndex);
   }
 
   dispose() {
@@ -151,21 +169,8 @@ export class PlaybackEngine {
     this.listeners.clear();
   }
 
-  private async loadCurrentCamera() {
+  private async loadTechniqueBuffers() {
     if (!this.manifest) {
-      return;
-    }
-
-    const camera = this.manifest.cameras[this.cameraIndex];
-    const cachedTrack = this.trackCache.get(camera.key);
-    if (cachedTrack) {
-      this.currentTrack = cachedTrack;
-      this.frameIndex = clamp(this.frameIndex, 0, this.manifest.frameCount - 1);
-      this.status = "ready";
-      this.bufferProgress = this.manifest.frameCount;
-      this.bufferTotal = this.manifest.frameCount;
-      this.error = null;
-      this.emit();
       return;
     }
 
@@ -174,11 +179,16 @@ export class PlaybackEngine {
     this.bufferProgress = 0;
     this.bufferTotal = this.manifest.frameCount;
     this.error = null;
-    this.currentTrack = new Array(this.manifest.frameCount);
+    this.frameCache.clear();
+    createEmptyFrameCache(this.manifest).forEach((track, key) => {
+      this.frameCache.set(key, track);
+    });
     this.emit();
 
     try {
-      const result = await loadCameraTrack(this.manifest, camera.key, {
+      await loadTechniqueFrameSlices(this.manifest, this.frameCache, {
+        cameraConcurrency: 12,
+        shouldAbort: () => token !== this.loadingToken,
         onProgress: (loaded, total) => {
           if (token !== this.loadingToken) {
             return;
@@ -187,25 +197,25 @@ export class PlaybackEngine {
           this.bufferTotal = total;
           this.emit();
         },
-        onFrameLoaded: (index, frame) => {
+        onSliceLoaded: (frameIndex) => {
           if (token !== this.loadingToken) {
             return;
           }
-          this.currentTrack[index] = frame;
-          if (index === this.frameIndex) {
+
+          if (frameIndex === 0) {
+            this.status = "ready";
+          }
+
+          if (frameIndex === this.frameIndex) {
             this.emit();
           }
         },
       });
 
       if (token !== this.loadingToken) {
-        releaseCameraTrack(result.frames);
         return;
       }
 
-      this.trackCache.set(camera.key, result.frames);
-      this.currentTrack = result.frames;
-      this.frameIndex = clamp(this.frameIndex, 0, this.manifest.frameCount - 1);
       this.status = "ready";
       this.emit();
     } catch (err) {
@@ -213,8 +223,12 @@ export class PlaybackEngine {
         return;
       }
 
+      if (err instanceof Error && err.message === "Technique frame load aborted") {
+        return;
+      }
+
       this.status = "idle";
-      this.error = err instanceof Error ? err.message : "Failed to load camera track";
+      this.error = err instanceof Error ? err.message : "Failed to load frames";
       this.emit();
     }
   }
@@ -242,11 +256,7 @@ export class PlaybackEngine {
   private resetPlayback() {
     this.loadingToken += 1;
     this.clock.stop();
-    for (const frames of this.trackCache.values()) {
-      releaseCameraTrack(frames);
-    }
-    this.trackCache.clear();
-    this.currentTrack = [];
+    releaseFrameCache(this.frameCache);
     this.manifest = null;
     this.cameraIndex = 0;
     this.frameIndex = 0;
@@ -263,8 +273,7 @@ export class PlaybackEngine {
       return false;
     }
 
-    return this.currentTrack.length === this.manifest.frameCount
-      && this.currentTrack.every((frame) => frame !== undefined);
+    return this.bufferProgress >= this.bufferTotal;
   }
 
   private getSnapshot(): PlaybackSnapshot {

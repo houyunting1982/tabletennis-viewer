@@ -7,7 +7,7 @@
         {
           "id": "01-fh-loop-off-block",
           "title": "FH Loop Off Block",
-          "manifestUrl": "https://cdn.tabletennislab.com/players/biba/techniques/01-fh-loop-off-block/manifest.json"
+          "manifestUrl": "/manifests/01-fh-loop-off-block.json"
         },
         {
           "id": "02-fh-counter-loop",

@@ -3,8 +3,10 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const repoRoot = path.resolve(__dirname, "../..");
-const bibaRoot = path.join(repoRoot, "Biba JPG");
+const projectRoot = path.resolve(__dirname, "..");
+const bibaRoot =
+  process.env.BIBA_ASSETS_DIR ??
+  path.join(projectRoot, "assets/Biba JPG");
 const publicDir = path.join(__dirname, "../public");
 const publicManifestsDir = path.join(publicDir, "manifests");
 const cdnStagingDir = path.join(__dirname, "../cdn-staging");

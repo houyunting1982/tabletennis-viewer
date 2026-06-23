@@ -85,9 +85,14 @@ export function PlayerView({ technique, playerName }: PlayerViewProps) {
     togglePlay,
   ]);
 
+  const waitingForCurrentSlice =
+    snapshot.status === "ready" &&
+    currentFrame === null &&
+    snapshot.bufferProgress < snapshot.bufferTotal;
   const isBuffering =
     snapshot.status === "loading_manifest" ||
-    snapshot.status === "loading_camera";
+    snapshot.status === "loading_camera" ||
+    waitingForCurrentSlice;
   const showBufferingOverlay = useDelayedVisible(isBuffering, 300);
 
   return (
@@ -112,7 +117,7 @@ export function PlayerView({ technique, playerName }: PlayerViewProps) {
           label={
             snapshot.status === "loading_manifest"
               ? "Loading manifest"
-              : "Preparing camera track"
+              : `Loading frame ${Math.min(snapshot.bufferProgress + 1, snapshot.bufferTotal)} / ${snapshot.bufferTotal} · all ${snapshot.cameraCount} cameras`
           }
         />
       </div>

@@ -5,8 +5,10 @@ import type { Connect, Plugin } from "vite";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-const repoRoot = path.resolve(__dirname, "..");
-const bibaAssetsRoot = path.join(repoRoot, "Biba JPG");
+const projectRoot = path.resolve(__dirname);
+const bibaAssetsRoot =
+  process.env.BIBA_ASSETS_DIR ??
+  path.join(projectRoot, "assets/Biba JPG");
 
 function createLocalAssetMiddleware(
   urlPrefix: string,
@@ -87,7 +89,7 @@ export default defineConfig({
   plugins: [react(), localDevServerPlugin()],
   server: {
     fs: {
-      allow: [repoRoot],
+      allow: [projectRoot],
     },
   },
 });

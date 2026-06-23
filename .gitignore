@@ -5,3 +5,7 @@ cdn.config.json
 .env
 .env.local
 .DS_Store
+
+# Local frame image sources (Biba + other players; too large for Git)
+assets/*
+!assets/README.md

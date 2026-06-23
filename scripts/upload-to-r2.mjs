@@ -4,8 +4,10 @@ import { fileURLToPath } from "node:url";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const repoRoot = path.resolve(__dirname, "../..");
-const bibaRoot = path.join(repoRoot, "Biba JPG");
+const projectRoot = path.resolve(__dirname, "..");
+const bibaRoot =
+  process.env.BIBA_ASSETS_DIR ??
+  path.join(projectRoot, "assets/Biba JPG");
 const cdnStagingDir = path.join(__dirname, "../cdn-staging");
 const configPath = path.join(__dirname, "../cdn.config.json");
 
