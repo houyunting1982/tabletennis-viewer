@@ -1,0 +1,9 @@
+{
+  "cdnBaseUrl": "https://cdn.your-domain.com",
+  "r2": {
+    "accountId": "your-cloudflare-account-id",
+    "bucket": "tabletennis-assets",
+    "accessKeyId": "your-r2-access-key-id",
+    "secretAccessKey": "your-r2-secret-access-key"
+  }
+}

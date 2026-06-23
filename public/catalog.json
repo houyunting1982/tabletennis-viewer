@@ -1,0 +1,345 @@
+{
+  "players": [
+    {
+      "id": "biba",
+      "name": "Biba",
+      "techniques": [
+        {
+          "id": "01-fh-loop-off-block",
+          "title": "FH Loop Off Block",
+          "manifestUrl": "https://cdn.tabletennislab.com/players/biba/techniques/01-fh-loop-off-block/manifest.json"
+        },
+        {
+          "id": "02-fh-counter-loop",
+          "title": "FH Counter Loop",
+          "manifestUrl": "/manifests/02-fh-counter-loop.json"
+        },
+        {
+          "id": "03-fh-curve-loop",
+          "title": "FH Curve Loop",
+          "manifestUrl": "/manifests/03-fh-curve-loop.json"
+        },
+        {
+          "id": "04-fh-in-out-off-ts",
+          "title": "FH In-Out Off TS",
+          "manifestUrl": "/manifests/04-fh-in-out-off-ts.json"
+        },
+        {
+          "id": "05-fh-loop-off-push",
+          "title": "FH Loop Off Push",
+          "manifestUrl": "/manifests/05-fh-loop-off-push.json"
+        },
+        {
+          "id": "06-fh-loop-off-chop",
+          "title": "FH Loop Off Chop",
+          "manifestUrl": "/manifests/06-fh-loop-off-chop.json"
+        },
+        {
+          "id": "07-fh-high-arc-loop",
+          "title": "FH High Arc Loop",
+          "manifestUrl": "/manifests/07-fh-high-arc-loop.json"
+        },
+        {
+          "id": "08-fh-drive-loop-off-us",
+          "title": "FH Drive Loop Off US",
+          "manifestUrl": "/manifests/08-fh-drive-loop-off-us.json"
+        },
+        {
+          "id": "09-fh-in-out-off-us",
+          "title": "FH In-Out Off US",
+          "manifestUrl": "/manifests/09-fh-in-out-off-us.json"
+        },
+        {
+          "id": "10-fh-curve-off-us",
+          "title": "FH Curve Off US",
+          "manifestUrl": "/manifests/10-fh-curve-off-us.json"
+        },
+        {
+          "id": "11-put-ball-in-play",
+          "title": "Put Ball In Play",
+          "manifestUrl": "/manifests/11-put-ball-in-play.json"
+        },
+        {
+          "id": "12-fh-counter",
+          "title": "FH Counter",
+          "manifestUrl": "/manifests/12-fh-counter.json"
+        },
+        {
+          "id": "13-fh-smash",
+          "title": "FH Smash",
+          "manifestUrl": "/manifests/13-fh-smash.json"
+        },
+        {
+          "id": "13a-lob-smash",
+          "title": "Lob Smash",
+          "manifestUrl": "/manifests/13a-lob-smash.json"
+        },
+        {
+          "id": "14-fh-passive-block",
+          "title": "FH Passive Block",
+          "manifestUrl": "/manifests/14-fh-passive-block.json"
+        },
+        {
+          "id": "15-fh-active-block",
+          "title": "FH Active Block",
+          "manifestUrl": "/manifests/15-fh-active-block.json"
+        },
+        {
+          "id": "16-fh-chop",
+          "title": "FH Chop",
+          "manifestUrl": "/manifests/16-fh-chop.json"
+        },
+        {
+          "id": "17-fh-fish",
+          "title": "FH Fish",
+          "manifestUrl": "/manifests/17-fh-fish.json"
+        },
+        {
+          "id": "18-fh-lob",
+          "title": "FH Lob",
+          "manifestUrl": "/manifests/18-fh-lob.json"
+        },
+        {
+          "id": "19-fh-push",
+          "title": "FH Push",
+          "manifestUrl": "/manifests/19-fh-push.json"
+        },
+        {
+          "id": "20-fh-drop-shot",
+          "title": "FH Drop Shot",
+          "manifestUrl": "/manifests/20-fh-drop-shot.json"
+        },
+        {
+          "id": "21-fh-flip",
+          "title": "FH Flip",
+          "manifestUrl": "/manifests/21-fh-flip.json"
+        },
+        {
+          "id": "22-fh-slide",
+          "title": "FH Slide",
+          "manifestUrl": "/manifests/22-fh-slide.json"
+        },
+        {
+          "id": "22a-fh-slide-from-bh",
+          "title": "FH Slide from BH",
+          "manifestUrl": "/manifests/22a-fh-slide-from-bh.json"
+        },
+        {
+          "id": "23-fh-shove",
+          "title": "FH Shove",
+          "manifestUrl": "/manifests/23-fh-shove.json"
+        },
+        {
+          "id": "23a-fh-shove-from-bh",
+          "title": "FH Shove from BH",
+          "manifestUrl": "/manifests/23a-fh-shove-from-bh.json"
+        },
+        {
+          "id": "24-fh-lift",
+          "title": "FH Lift",
+          "manifestUrl": "/manifests/24-fh-lift.json"
+        },
+        {
+          "id": "25-bh-loop-off-block",
+          "title": "BH Loop Off Block",
+          "manifestUrl": "/manifests/25-bh-loop-off-block.json"
+        },
+        {
+          "id": "26-bh-counter-loop",
+          "title": "BH Counter Loop",
+          "manifestUrl": "/manifests/26-bh-counter-loop.json"
+        },
+        {
+          "id": "27-bh-curve-off-ts",
+          "title": "BH Curve Off TS",
+          "manifestUrl": "/manifests/27-bh-curve-off-ts.json"
+        },
+        {
+          "id": "28-bh-in-out-off-ts",
+          "title": "BH In-Out Off TS",
+          "manifestUrl": "/manifests/28-bh-in-out-off-ts.json"
+        },
+        {
+          "id": "29-bh-loop-off-push",
+          "title": "BH Loop Off Push",
+          "manifestUrl": "/manifests/29-bh-loop-off-push.json"
+        },
+        {
+          "id": "30-bh-loop-off-chop",
+          "title": "BH Loop Off Chop",
+          "manifestUrl": "/manifests/30-bh-loop-off-chop.json"
+        },
+        {
+          "id": "31-bh-high-arc",
+          "title": "BH High Arc",
+          "manifestUrl": "/manifests/31-bh-high-arc.json"
+        },
+        {
+          "id": "32-bh-drive-off-us",
+          "title": "BH Drive Off US",
+          "manifestUrl": "/manifests/32-bh-drive-off-us.json"
+        },
+        {
+          "id": "33-bh-in-out-off-us",
+          "title": "BH In-Out Off US",
+          "manifestUrl": "/manifests/33-bh-in-out-off-us.json"
+        },
+        {
+          "id": "34-bh-curve-off-us",
+          "title": "BH Curve Off US",
+          "manifestUrl": "/manifests/34-bh-curve-off-us.json"
+        },
+        {
+          "id": "35-bh-counter",
+          "title": "BH Counter",
+          "manifestUrl": "/manifests/35-bh-counter.json"
+        },
+        {
+          "id": "36-bh-smash",
+          "title": "BH Smash",
+          "manifestUrl": "/manifests/36-bh-smash.json"
+        },
+        {
+          "id": "36a-high-ball-smash",
+          "title": "High Ball Smash",
+          "manifestUrl": "/manifests/36a-high-ball-smash.json"
+        },
+        {
+          "id": "37-bh-passive-block",
+          "title": "BH Passive Block",
+          "manifestUrl": "/manifests/37-bh-passive-block.json"
+        },
+        {
+          "id": "38-bh-active-block",
+          "title": "BH Active Block",
+          "manifestUrl": "/manifests/38-bh-active-block.json"
+        },
+        {
+          "id": "39-bh-chop-block",
+          "title": "BH Chop Block",
+          "manifestUrl": "/manifests/39-bh-chop-block.json"
+        },
+        {
+          "id": "40-bh-chop",
+          "title": "BH Chop",
+          "manifestUrl": "/manifests/40-bh-chop.json"
+        },
+        {
+          "id": "41-bh-fish",
+          "title": "BH Fish",
+          "manifestUrl": "/manifests/41-bh-fish.json"
+        },
+        {
+          "id": "42-bh-lob",
+          "title": "BH Lob",
+          "manifestUrl": "/manifests/42-bh-lob.json"
+        },
+        {
+          "id": "43-bh-push",
+          "title": "BH Push",
+          "manifestUrl": "/manifests/43-bh-push.json"
+        },
+        {
+          "id": "44-bh-drop-shot",
+          "title": "BH Drop Shot",
+          "manifestUrl": "/manifests/44-bh-drop-shot.json"
+        },
+        {
+          "id": "45-bh-flip",
+          "title": "BH Flip",
+          "manifestUrl": "/manifests/45-bh-flip.json"
+        },
+        {
+          "id": "46-bh-slide",
+          "title": "BH Slide",
+          "manifestUrl": "/manifests/46-bh-slide.json"
+        },
+        {
+          "id": "46a-bh-slide",
+          "title": "BH Slide",
+          "manifestUrl": "/manifests/46a-bh-slide.json"
+        },
+        {
+          "id": "47-bh-shove",
+          "title": "BH Shove",
+          "manifestUrl": "/manifests/47-bh-shove.json"
+        },
+        {
+          "id": "47a-bh-shove",
+          "title": "BH Shove",
+          "manifestUrl": "/manifests/47a-bh-shove.json"
+        },
+        {
+          "id": "48-bh-lift",
+          "title": "BH Lift",
+          "manifestUrl": "/manifests/48-bh-lift.json"
+        },
+        {
+          "id": "49-bh-banana",
+          "title": "BH Banana",
+          "manifestUrl": "/manifests/49-bh-banana.json"
+        },
+        {
+          "id": "50-bh-strawberry",
+          "title": "BH Strawberry",
+          "manifestUrl": "/manifests/50-bh-strawberry.json"
+        },
+        {
+          "id": "51-fh-us-serve",
+          "title": "FH US Serve",
+          "manifestUrl": "/manifests/51-fh-us-serve.json"
+        },
+        {
+          "id": "52-bh-us-serve",
+          "title": "BH US Serve",
+          "manifestUrl": "/manifests/52-bh-us-serve.json"
+        },
+        {
+          "id": "57-fh-ts-serve",
+          "title": "FH TS Serve",
+          "manifestUrl": "/manifests/57-fh-ts-serve.json"
+        },
+        {
+          "id": "58-bh-ts-serve",
+          "title": "BH TS Serve",
+          "manifestUrl": "/manifests/58-bh-ts-serve.json"
+        },
+        {
+          "id": "59-fh-tomahawk",
+          "title": "FH Tomahawk",
+          "manifestUrl": "/manifests/59-fh-tomahawk.json"
+        },
+        {
+          "id": "59b-bh-tomahawk",
+          "title": "BH Tomahawk",
+          "manifestUrl": "/manifests/59b-bh-tomahawk.json"
+        },
+        {
+          "id": "60-ready-position",
+          "title": "Ready Position",
+          "manifestUrl": "/manifests/60-ready-position.json"
+        },
+        {
+          "id": "61-one-step",
+          "title": "One Step",
+          "manifestUrl": "/manifests/61-one-step.json"
+        },
+        {
+          "id": "62-turn",
+          "title": "Turn",
+          "manifestUrl": "/manifests/62-turn.json"
+        },
+        {
+          "id": "63-recover-from-serve",
+          "title": "Recover From Serve",
+          "manifestUrl": "/manifests/63-recover-from-serve.json"
+        },
+        {
+          "id": "64-cross-step",
+          "title": "Cross Step",
+          "manifestUrl": "/manifests/64-cross-step.json"
+        }
+      ]
+    }
+  ]
+}
