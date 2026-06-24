@@ -1,4 +1,7 @@
-# Deploy frontend to Cloudflare Pages on push to main.
+# Deploy frontend to Cloudflare Pages on push to main (and manual workflow_dispatch).
+#
+# Use GitHub Actions only — do NOT enable "Connect to Git" on the Cloudflare Pages
+# project (that path runs wrangler deploy as a Worker and conflicts with this workflow).
 #
 # Required GitHub repo secrets:
 #   CLOUDFLARE_API_TOKEN   — Cloudflare API token with "Cloudflare Pages · Edit"
@@ -54,7 +57,7 @@ jobs:
 
   deploy:
     needs: build
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       contents: read
