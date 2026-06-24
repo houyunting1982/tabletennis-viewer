@@ -42,30 +42,30 @@ export async function loadCameraTrack(
 }
 
 export async function decodeFrame(url: string): Promise<DecodedFrame> {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`Failed to load frame (${response.status}): ${url}`);
-  }
-
-  const blob = await response.blob();
-  const objectUrl = URL.createObjectURL(blob);
   const image = new Image();
+  // Load cross-origin JPG via <img> (no CORS required for display-only playback).
 
   await new Promise<void>((resolve, reject) => {
     image.onload = () => resolve();
-    image.onerror = () => reject(new Error(`Failed to decode frame: ${url}`));
-    image.src = objectUrl;
+    image.onerror = () => reject(new Error(`Failed to load frame: ${url}`));
+    image.src = url;
   });
 
   if ("decode" in image) {
     await image.decode();
   }
 
-  return { image, objectUrl };
+  return { image, objectUrl: url };
+}
+
+export function releaseDecodedFrame(frame: DecodedFrame) {
+  if (frame.objectUrl.startsWith("blob:")) {
+    URL.revokeObjectURL(frame.objectUrl);
+  }
 }
 
 export function releaseCameraTrack(frames: DecodedFrame[]) {
   for (const frame of frames) {
-    URL.revokeObjectURL(frame.objectUrl);
+    releaseDecodedFrame(frame);
   }
 }

@@ -1,5 +1,5 @@
 import { buildFrameUrl } from "./manifest";
-import { decodeFrame } from "./cameraTrackLoader";
+import { decodeFrame, releaseDecodedFrame } from "./cameraTrackLoader";
 import type { CameraInfo, DecodedFrame, TechniqueManifest } from "./types";
 
 export type FrameCache = Map<string, Array<DecodedFrame | undefined>>;
@@ -271,7 +271,7 @@ export function startPhasedTechniqueLoad(
           );
 
           if (aborted) {
-            URL.revokeObjectURL(frame.objectUrl);
+            releaseDecodedFrame(frame);
             return;
           }
 
@@ -315,7 +315,7 @@ export function releaseFrameCache(frameCache: FrameCache) {
   for (const track of frameCache.values()) {
     for (const frame of track) {
       if (frame) {
-        URL.revokeObjectURL(frame.objectUrl);
+        releaseDecodedFrame(frame);
       }
     }
   }
