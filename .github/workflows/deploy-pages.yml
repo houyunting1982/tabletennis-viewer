@@ -8,7 +8,7 @@
 #   VITE_CATALOG_URL              — default: https://cdn.tabletennislab.com/catalog.json
 #   CLOUDFLARE_PAGES_PROJECT_NAME — default: tabletennis-viewer
 #
-# Create the Pages project once in Cloudflare (or let wrangler create it on first deploy).
+# Create the Pages project once in Cloudflare, or let the deploy job create it automatically.
 
 name: Deploy Pages
 
@@ -66,9 +66,19 @@ jobs:
           name: dist
           path: dist
 
+      - name: Ensure Cloudflare Pages project exists
+        uses: cloudflare/wrangler-action@v3
+        continue-on-error: true
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "3.90.0"
+          command: pages project create ${{ env.CLOUDFLARE_PAGES_PROJECT_NAME }} --production-branch=main
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "3.90.0"
           command: pages deploy dist --project-name=${{ env.CLOUDFLARE_PAGES_PROJECT_NAME }}
