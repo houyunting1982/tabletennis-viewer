@@ -1,336 +1,415 @@
-# 使用指南
+# Usage Guide · 使用指南
 
-本文说明如何在 **本地开发** 和 **Cloudflare R2 / CDN** 两种模式下使用 `newVersion` 播放器。
+Detailed walkthrough for **local development** and **Cloudflare R2 / CDN production**.
+
+本地开发与 **Cloudflare R2 / CDN 上线** 的详细说明。
+
+> Shorter reference: [README.md](./README.md)
 
 ---
 
-## 前置条件
+## Prerequisites · 前置条件
+
+**EN**
 
 - Node.js 18+
-- 项目根目录下有 `Biba JPG/` 文件夹（原始图片）
-- 已在 `newVersion/` 里执行过 `npm install`
+- `npm install` at project root
+- JPG folders under `assets/` (see [assets/README.md](./assets/README.md)) — not committed to Git
+
+**中文**
+
+- Node.js 18+
+- 在项目根目录执行 `npm install`
+- `assets/` 下放置 JPG 文件夹（见 [assets/README.md](./assets/README.md)）— 不提交 Git
+
+Configured players · 已配置球员：`Biba` · `Felipe` · `Lupi`（见 `scripts/players.config.mjs`）
 
 ---
 
-## 一、本地开发（推荐先做）
+## URL routes · 路由
 
-本地模式不需要 Cloudflare，图片直接从磁盘读取。
+| Path | EN | 中文 |
+|------|----|------|
+| `/` | Player picker | 球员选择页 |
+| `/players/biba` | Biba catalog | Biba 技术目录 |
+| `/players/felipe` | Felipe catalog | Felipe 技术目录 |
+| `/players/lupi` | Lupi catalog | Lupi 技术目录 |
+| `/players/{id}/{techniqueId}` | Player view | 播放器 |
 
-### 1. 生成 manifest 和 catalog
+Example · 示例：`/players/biba/02-fh-counter-loop`
+
+---
+
+## Part 1 · Local development · 本地开发
+
+**EN:** No Cloudflare required. Images are read from disk via Vite middleware.
+
+**中文：** 不需要 Cloudflare。图片由 Vite 中间件直接从磁盘读取。
+
+### 1.1 Generate manifest & catalog · 生成 manifest 与 catalog
 
 ```bash
-cd newVersion
 npm run generate-manifest
 ```
 
-会生成：
+One player only · 只生成某一球员：
+
+```bash
+node scripts/generate-manifest.mjs --player=felipe
+```
+
+**Output · 输出：**
 
 ```
 public/
-├── catalog.json                         # 技术目录（67 个 Biba 技术）
+├── catalog.json
 └── manifests/
-    ├── 01-fh-loop-off-block.json
-    ├── 02-fh-counter-loop.json
-    └── ...
+    ├── biba/
+    │   ├── 01-fh-loop-off-block.json
+    │   └── ...
+    ├── felipe/
+    └── lupi/
 ```
 
-每个 manifest 里的 `baseUrl` 指向本地路径，例如：
+Local `baseUrl` example · 本地 `baseUrl` 示例：
 
 ```json
-"baseUrl": "/local-assets/01%20Biba%20FH%20Loop%20Off%20Block%20JPG"
+"baseUrl": "/local-assets/Biba%20JPG/01%20Biba%20FH%20Loop%20Off%20Block%20JPG"
 ```
 
-### 2. 启动开发服务器
+### 1.2 Start dev server · 启动开发服务器
 
 ```bash
 npm run dev
 ```
 
-浏览器打开 `http://localhost:5173`
+Open · 打开：`http://localhost:5173`
 
-### 3. 使用播放器
+### 1.3 Using the app · 使用播放器
 
-1. 首页看到 **Biba · 67 techniques**
-2. 可用搜索框过滤（例如输入 `Turn`、`Serve`）
-3. 点击某个技术进入播放器
-4. 等待缓冲完成（例如 `62/62 frames`）
-5. 使用控制栏或键盘操作：
+**EN**
 
-| 操作 | 键盘 |
-|------|------|
-| 上一机位 / 下一机位 | ← / → |
-| 上一帧 / 下一帧 | ↓ / ↑ |
-| 播放 / 暂停 | 空格 |
-| 100% / 50% / 25% / 10% 速度 | 1 / 2 / 3 / 4 |
+1. Home → pick **Biba**, **Felipe**, or **Lupi**
+2. Browse / search techniques on the player catalog page
+3. Open a technique → wait until Camera 1 is ready
+4. Play, scrub timeline, switch cameras when loaded
 
-### 4. 本地数据流
+**中文**
+
+1. 首页 → 选择 **Biba**、**Felipe** 或 **Lupi**
+2. 在球员目录页浏览 / 搜索技术
+3. 进入某技术 → 等待 Camera 1 缓冲完成
+4. 播放、拖动时间轴、机位加载完成后切换
+
+| Action · 操作 | Keys · 键盘 |
+|---------------|-------------|
+| Prev / next camera · 上 / 下一机位 | ← / → |
+| Prev / next frame · 上 / 下一帧 | ↓ / ↑ |
+| Play / pause · 播放 / 暂停 | Space |
+| 1× / ½× / ¼× / ⅒× speed · 速度 | 1 / 2 / 3 / 4 |
+
+### 1.4 Local data flow · 本地数据流
 
 ```
-浏览器
+Browser · 浏览器
   → GET /catalog.json
-  → 选技术，GET /manifests/01-fh-loop-off-block.json
-  → 按 manifest 拉 JPG：/local-assets/01%20Biba%20.../xxx.jpg
-  → 预载当前机位全部帧 → 播放
+  → GET /manifests/biba/02-fh-counter-loop.json
+  → JPG: /local-assets/Biba JPG/…/xxx.jpg
+  → Preload Camera 1 → play · 预载 Camera 1 → 播放
 ```
 
-图片 **不经过 API**，Vite dev server 直接读 `../Biba JPG/`。
+**EN:** Vite serves `/local-assets/` from the `assets/` directory.
+
+**中文：** Vite 将 `/local-assets/` 映射到 `assets/` 目录。
 
 ---
 
-## 二、Cloudflare R2 / CDN（上线用）
+## Part 2 · Cloudflare R2 / CDN · CDN 上线
 
-适合：想把站点部署到网上，让别人也能访问。
+**EN:** For public hosting — catalog, manifests, and JPGs on R2; UI on Cloudflare Pages.
 
-### 架构
+**中文：** 对外发布 — catalog、manifest、JPG 放 R2；前端放 Cloudflare Pages。
+
+### Architecture · 架构
 
 ```
-catalog.json          →  CDN 根目录
-manifest.json × 67    →  CDN /players/biba/techniques/<id>/
-JPG 帧图              →  与 manifest 同目录
-前端 React            →  Cloudflare Pages（或其他静态托管）
+catalog.json              →  CDN root · CDN 根目录
+manifest.json × N         →  CDN /players/{id}/techniques/{techniqueId}/
+JPG frames · JPG 帧图      →  same folder as manifest · 与 manifest 同目录
+React frontend · 前端      →  Cloudflare Pages (GitHub Actions deploy)
 ```
 
-### Step 1：Cloudflare 控制台配置
+### Step 1 · Cloudflare console · 控制台配置
 
-1. 登录 [Cloudflare Dashboard](https://dash.cloudflare.com/)
-2. **R2** → Create bucket（例如 `tabletennis-assets`）
-3. Bucket → **Settings** → **Custom Domains** → 绑定子域名  
-   例如：`https://cdn.your-domain.com`
-4. **R2** → **Manage R2 API Tokens** → Create API Token  
-   权限：对该 bucket 的 Read & Write
-5. 记下：
-   - Account ID
-   - Access Key ID
-   - Secret Access Key
-   - Bucket 名称
+**EN**
 
-### Step 2：填写本地配置
+1. [Cloudflare Dashboard](https://dash.cloudflare.com/) → **R2** → Create bucket (e.g. `tabletennis-assets`)
+2. Bucket → **Settings** → **Custom Domains** → e.g. `https://cdn.your-domain.com`
+3. **R2** → **Manage R2 API Tokens** → Read & Write on bucket
+4. Save Account ID, Access Key ID, Secret Access Key, bucket name
+
+**中文**
+
+1. [Cloudflare 控制台](https://dash.cloudflare.com/) → **R2** → 创建 bucket（如 `tabletennis-assets`）
+2. Bucket → **Settings** → **Custom Domains** → 绑定子域名，如 `https://cdn.your-domain.com`
+3. **R2** → **Manage R2 API Tokens** → 对该 bucket **Read & Write**
+4. 记下 Account ID、Access Key ID、Secret Access Key、bucket 名称
+
+### Step 2 · Local config · 本地配置
 
 ```bash
-cd newVersion
 cp cdn.config.example.json cdn.config.json
 ```
-
-编辑 `cdn.config.json`（此文件已在 `.gitignore`，不会提交）：
 
 ```json
 {
   "cdnBaseUrl": "https://cdn.your-domain.com",
   "r2": {
-    "accountId": "你的 Cloudflare Account ID",
+    "accountId": "your Cloudflare Account ID",
     "bucket": "tabletennis-assets",
-    "accessKeyId": "你的 R2 Access Key",
-    "secretAccessKey": "你的 R2 Secret Key"
+    "accessKeyId": "your R2 Access Key",
+    "secretAccessKey": "your R2 Secret Key"
   }
 }
 ```
 
-> `cdnBaseUrl` 必须和 R2 自定义域名一致，**不要**末尾加 `/`。
+**EN:** `cdnBaseUrl` must match the R2 custom domain — **no trailing slash**.
 
-### Step 3：生成 CDN 版 manifest
+**中文：** `cdnBaseUrl` 必须与 R2 自定义域名一致，**末尾不要加 `/`**。
+
+**EN:** Do **not** commit `cdn.config.json` (gitignored).
+
+**中文：** **不要**提交 `cdn.config.json`（已在 `.gitignore`）。
+
+### Step 3 · Generate CDN manifests · 生成 CDN 版 manifest
 
 ```bash
 npm run generate-manifest:cdn
 ```
 
-输出到 `cdn-staging/`：
-
 ```
 cdn-staging/
 ├── catalog.json
 ├── players/biba/catalog.json
-└── players/biba/techniques/
-    ├── 01-fh-loop-off-block/
-    │   └── manifest.json
-    ├── 02-fh-counter-loop/
-    │   └── manifest.json
-    └── ...（共 67 个）
+├── players/felipe/catalog.json
+├── players/lupi/catalog.json
+└── players/{playerId}/techniques/{techniqueId}/manifest.json
 ```
 
-此时 manifest 里的 URL 已是 CDN 地址：
+CDN manifest example · CDN manifest 示例：
 
 ```json
 {
-  "id": "01-fh-loop-off-block",
-  "title": "FH Loop Off Block",
   "baseUrl": "https://cdn.your-domain.com/players/biba/techniques/01-fh-loop-off-block",
   "source": {
-    "folder": "01 Biba FH Loop Off Block JPG"
+    "folder": "01 Biba FH Loop Off Block JPG",
+    "playerAssetsDir": "Biba JPG"
   }
 }
 ```
 
-### Step 4：上传到 R2
-
-**先 dry-run（不实际上传）：**
+### Step 4 · Upload to R2 · 上传到 R2
 
 ```bash
-npm run upload-r2:dry-run
+npm run upload-r2:dry-run                              # preview · 预览
+node scripts/upload-to-r2.mjs 01-fh-loop-off-block     # one technique · 单个试点
+npm run upload-r2                                      # full upload · 全量
+npm run upload-r2:catalog                              # catalog JSON only · 仅 catalog
 ```
 
-**先试 1 个技术：**
+**EN:** Verify in browser:
 
-```bash
-node scripts/upload-to-r2.mjs 01-fh-loop-off-block
-```
-
-上传后在浏览器验证这两个 URL 能打开：
+**中文：** 浏览器验证：
 
 ```
+https://cdn.your-domain.com/catalog.json
 https://cdn.your-domain.com/players/biba/techniques/01-fh-loop-off-block/manifest.json
 https://cdn.your-domain.com/players/biba/techniques/01-fh-loop-off-block/01BibaFHLoopOffBlockC01_00216000.jpg
 ```
 
-**确认无误后，上传全部 67 个技术 + catalog：**
+**EN:** Full upload is large (multi‑GB per player) — first run takes time.
+
+**中文：** 全量体积很大（每位球员数 GB 级），首次上传需较长时间。
+
+### Step 5 · R2 CORS · CORS 配置
+
+**EN:** `fetch()` for catalog/manifest requires CORS on the bucket. Frame JPGs use `<img>` (no CORS).
+
+**中文：** catalog / manifest 的 `fetch()` 需要 bucket **CORS**。帧图用 `<img>` 加载（不需要 CORS）。
+
+R2 → bucket → **Settings** → **CORS policy**:
+
+```json
+[
+  {
+    "AllowedOrigins": [
+      "https://tabletennislab.com",
+      "https://www.tabletennislab.com"
+    ],
+    "AllowedMethods": ["GET", "HEAD"],
+    "AllowedHeaders": ["*"],
+    "MaxAgeSeconds": 3600
+  }
+]
+```
+
+Replace origins with your site domain · 将 origins 换成你的站点域名。
+
+### Step 6 · Frontend env & build · 前端环境变量与构建
 
 ```bash
-npm run upload-r2
-```
-
-> 全量约 3.8GB，首次上传需要一些时间。
-
-R2 上最终结构：
-
-```
-tabletennis-assets/
-├── catalog.json
-└── players/biba/techniques/
-    └── 01-fh-loop-off-block/
-        ├── manifest.json
-        ├── 01BibaFHLoopOffBlockC01_00216000.jpg
-        └── ...
-```
-
-### Step 5：前端指向 CDN
-
-创建 `.env.production`：
-
-```bash
+# .env.production
 VITE_CATALOG_URL=https://cdn.your-domain.com/catalog.json
 ```
-
-构建：
 
 ```bash
 npm run build
 ```
 
-`dist/` 即为可部署的前端静态文件。
+Output · 输出：`dist/`
 
-### Step 6：部署前端（Cloudflare Pages 示例）
+### Step 7 · Deploy via GitHub Actions · GitHub Actions 部署
 
-1. Dashboard → **Workers & Pages** → **Create** → **Pages**
-2. 连接 GitHub 仓库，或手动上传 `dist/`
-3. Build settings：
-   - Root directory: `newVersion`
-   - Build command: `npm run build`
-   - Output directory: `dist`
-4. Environment variables：`VITE_CATALOG_URL=https://cdn.your-domain.com/catalog.json`
-5. 部署完成后访问 Pages 域名
+**EN**
 
-### CDN 模式数据流
+- Workflow: `.github/workflows/deploy-pages.yml`
+- **Secrets:** `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`
+- **Optional variable:** `VITE_CATALOG_URL`
+- Push to `main` → auto deploy
+- **Do not** enable “Connect to Git” on the Cloudflare Pages project (conflicts with this workflow)
+
+**中文**
+
+- 工作流：`.github/workflows/deploy-pages.yml`
+- **Secrets：** `CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_ACCOUNT_ID`
+- **可选变量：** `VITE_CATALOG_URL`
+- 推送到 `main` → 自动部署
+- **不要**在 Cloudflare Pages 项目里开启 “Connect to Git”（会与 Actions 冲突）
+
+Custom domain · 自定义域名：Pages project → **Custom domains** → `tabletennislab.com`
+
+### CDN data flow · CDN 数据流
 
 ```
-浏览器
-  → GET https://cdn.xxx.com/catalog.json
-  → 选技术，GET manifestUrl（也在 CDN 上）
-  → 按 manifest.baseUrl 拉每一帧 JPG（CDN，不进 API）
-  → 预载机位 → 播放
+Browser · 浏览器
+  → fetch catalog.json (CDN, needs CORS)
+  → fetch manifest.json (CDN, needs CORS)
+  → load JPG via img src (CDN, no CORS)
+  → preload → play · 预载 → 播放
 ```
 
 ---
 
-## 三、命令速查
+## Part 3 · Command reference · 命令速查
 
-| 命令 | 何时用 |
-|------|--------|
-| `npm run generate-manifest` | 本地开发前 / 新增 Biba 文件夹后 |
-| `npm run dev` | 本地启动播放器 |
-| `npm run generate-manifest:cdn` | 准备上传 R2 前 |
-| `npm run upload-r2:dry-run` | 检查会上传哪些文件 |
-| `node scripts/upload-to-r2.mjs <id>` | 只上传某一个技术（试点） |
-| `npm run upload-r2` | 上传全部技术 + catalog |
-| `npm run build` | 构建生产版前端 |
+| Command | EN | 中文 |
+|---------|----|------|
+| `npm run generate-manifest` | Before local dev / after asset changes | 本地开发前 / 改 JPG 后 |
+| `npm run dev` | Start dev server | 启动开发服务器 |
+| `npm run generate-manifest:cdn` | Before R2 upload | 上传 R2 前 |
+| `npm run upload-r2:dry-run` | Preview upload list | 预览上传列表 |
+| `node scripts/upload-to-r2.mjs <id>` | Upload one technique | 上传单个技术 |
+| `npm run upload-r2` | Upload all players + catalog | 全量上传 |
+| `npm run build` | Production build | 生产构建 |
 
 ---
 
-## 四、两种模式对比
+## Part 4 · Local vs CDN · 两种模式对比
 
-| | 本地 dev | CDN 生产 |
-|--|----------|----------|
+| | Local dev · 本地 | CDN production · 生产 |
+|--|------------------|----------------------|
 | Catalog | `/catalog.json` | `https://cdn.xxx.com/catalog.json` |
-| Manifest | `/manifests/<id>.json` | `https://cdn.xxx.com/players/biba/techniques/<id>/manifest.json` |
-| 图片 | `/local-assets/...` | `https://cdn.xxx.com/players/biba/techniques/<id>/*.jpg` |
-| 生成命令 | `generate-manifest` | `generate-manifest:cdn` |
-| 需要 R2 | 否 | 是 |
+| Manifest | `/manifests/{playerId}/{id}.json` | `https://cdn.xxx.com/players/{playerId}/techniques/{id}/manifest.json` |
+| Images · 图片 | `/local-assets/...` | CDN same path · CDN 同路径 |
+| Generate · 生成 | `generate-manifest` | `generate-manifest:cdn` |
+| R2 required · 需要 R2 | No · 否 | Yes · 是 |
 
-本地开发和 CDN **共用同一套播放器代码**，只是 catalog / manifest / 图片 URL 不同。
+**EN:** Same player code — only URLs differ.
+
+**中文：** 播放器代码相同 — 只是 URL 来源不同。
 
 ---
 
-## 五、常见问题
+## Part 5 · FAQ · 常见问题
 
-### Q: 改了 `Biba JPG/` 里的内容怎么办？
-
-重新生成 manifest，再上传：
+### Changed JPG folders? · 改了 JPG 文件夹？
 
 ```bash
-npm run generate-manifest          # 本地
-npm run generate-manifest:cdn      # CDN
-npm run upload-r2                  # 若已上 CDN
+npm run generate-manifest          # local · 本地
+npm run generate-manifest:cdn      # CDN staging
+npm run upload-r2                  # if on CDN · 若已上 CDN
 ```
 
-### Q: 本地 dev 和 CDN 会互相影响吗？
+### Local and CDN affect each other? · 本地和 CDN 会互相影响吗？
 
-不会。  
-- 本地：`npm run generate-manifest` → 写 `public/`  
-- CDN：`npm run generate-manifest:cdn` → 写 `cdn-staging/`
+**EN:** No. Local writes `public/`; CDN writes `cdn-staging/`.
 
-### Q: `cdn.config.json` 要提交 Git 吗？
+**中文：** 不会。本地写 `public/`；CDN 写 `cdn-staging/`。
 
-**不要。** 含 Secret Key，已在 `.gitignore`。
+### Upload 403? · 上传 403？
 
-### Q: 上传失败 / 403？
+**EN / 中文：** Check R2 token permissions, Account ID, bucket name · 检查 R2 Token 权限、Account ID、bucket 名称。
 
-检查 R2 API Token 权限、Account ID、Bucket 名称是否正确。
+### Site shows “Failed to fetch” / “Load failed”? · 站点 Failed to fetch？
 
-### Q: 浏览器能打开 JPG，但播放器报错？
+**EN**
 
-1. 检查 manifest 里的 `baseUrl` 是否和 CDN 域名一致  
-2. 检查 R2 自定义域名是否已生效（DNS 有时需几分钟）  
-3. 打开 DevTools → Network，看哪条请求失败
+1. Open `https://cdn…/catalog.json` directly — SSL / DNS issue?
+2. R2 CORS for JSON fetches
+3. DevTools → Network → failed request
 
-### Q: 为什么每个技术要单独一个 manifest？
+**中文**
 
-每个技术帧数、文件名不同（62～183 帧不等），无法用一个文件描述全部。  
-`catalog.json` 负责目录，`manifest.json` 负责单个技术的帧列表。
+1. 直接打开 `https://cdn…/catalog.json` — SSL / DNS 问题？
+2. R2 是否配置了 CORS（JSON）
+3. DevTools → Network → 看失败请求
+
+### Why one manifest per technique? · 为什么每个技术一个 manifest？
+
+**EN:** Frame counts and filenames differ per technique (e.g. 62–183 frames). `catalog.json` = directory; `manifest.json` = frame list for one technique.
+
+**中文：** 每个技术帧数、文件名不同（约 62–183 帧）。`catalog.json` = 目录；`manifest.json` = 单个技术的帧列表。
+
+### Skipped folders during generate? · generate 时跳过某些文件夹？
+
+**EN:** Folder name must match `folderPattern` in `scripts/players.config.mjs` (e.g. `01 Biba FH Loop Off Block JPG`).
+
+**中文：** 文件夹名须匹配 `scripts/players.config.mjs` 里的 `folderPattern`（如 `01 Biba FH Loop Off Block JPG`）。
+
+### Add a new player? · 新增球员？
+
+**EN:** See [README — Adding a player](./README.md#adding-a-player).
+
+**中文：** 见 [README — Adding a player](./README.md#adding-a-player)。
 
 ---
 
-## 六、推荐操作顺序（第一次）
+## Part 6 · First-time checklist · 第一次推荐顺序
 
 ```
-1. npm run generate-manifest && npm run dev     ← 本地确认播放器 OK
-2. Cloudflare 建 R2 bucket + 绑域名 + API Token
-3. cp cdn.config.example.json cdn.config.json   ← 填凭证
+1. npm run generate-manifest && npm run dev     ← verify locally · 本地验证
+2. Cloudflare: R2 bucket + custom domain + API token
+3. cp cdn.config.example.json cdn.config.json
 4. npm run generate-manifest:cdn
-5. node scripts/upload-to-r2.mjs 01-fh-loop-off-block   ← 先试 1 个
-6. 浏览器验证 CDN 上 manifest + JPG 能打开
-7. npm run upload-r2                            ← 全量上传
-8. 设 VITE_CATALOG_URL，npm run build，部署 Pages
+5. node scripts/upload-to-r2.mjs 01-fh-loop-off-block
+6. Verify CDN URLs in browser · 浏览器验证 CDN URL
+7. npm run upload-r2
+8. Set VITE_CATALOG_URL → npm run build → push main (GitHub Actions deploy)
 ```
 
 ---
 
-## 七、文件说明
+## Part 7 · Files · 文件说明
 
-| 文件 / 目录 | 作用 |
-|-------------|------|
-| `Biba JPG/` | 原始图片（不上传 Git，本地/R2 源） |
-| `public/catalog.json` | 本地技术目录 |
-| `public/manifests/*.json` | 本地 manifest |
-| `cdn-staging/` | CDN 上传前的 manifest  staging |
-| `cdn.config.json` | R2 凭证（本地，不提交） |
-| `scripts/generate-manifest.mjs` | 扫描 Biba 文件夹，生成 manifest |
-| `scripts/upload-to-r2.mjs` | 上传 manifest + JPG 到 R2 |
-| `src/lib/playback/` | 播放引擎（预载、缓存、播放） |
+| Path | EN | 中文 |
+|------|----|------|
+| `assets/* JPG/` | Source frames (gitignored) | 原始图片（不进 Git） |
+| `scripts/players.config.mjs` | Player list & folder patterns | 球员配置与命名规则 |
+| `public/catalog.json` | Generated library index | 生成的总目录 |
+| `public/manifests/{playerId}/` | Generated per-technique manifests | 各技术 manifest |
+| `cdn-staging/` | CDN upload staging | CDN 上传 staging |
+| `cdn.config.json` | R2 credentials (local, gitignored) | R2 凭证（本地，不提交） |
+| `scripts/generate-manifest.mjs` | Scan assets → manifests | 扫描 assets 生成 manifest |
+| `scripts/upload-to-r2.mjs` | Upload to R2 | 上传到 R2 |
+| `src/lib/playback/` | Playback engine | 播放引擎 |
+| `.github/workflows/deploy-pages.yml` | Pages deploy CI | Pages 部署 CI |

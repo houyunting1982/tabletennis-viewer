@@ -1313,12 +1313,43 @@ button:disabled {
 }
 
 @media (max-width: 720px) {
+  .app-shell,
+  .app-shell--catalog,
+  .app-shell--player {
+    width: 100%;
+    padding-inline: 0;
+  }
+
+  .app-shell {
+    padding-top: 0;
+    padding-bottom: 32px;
+  }
+
+  .app-shell--catalog {
+    padding-top: 0;
+    padding-bottom: 40px;
+  }
+
+  .app-shell--player {
+    padding-inline: var(--content-gutter);
+  }
+
+  .catalog-page {
+    border: none;
+    border-radius: 0;
+    background: transparent;
+  }
+
   .player-header {
     flex-direction: column;
   }
 
   .technique-grid {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+
+  .player-grid {
+    grid-template-columns: 1fr;
   }
 
   .catalog-section-header {
