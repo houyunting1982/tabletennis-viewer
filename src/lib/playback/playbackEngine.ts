@@ -291,11 +291,6 @@ export class PlaybackEngine {
 
           if (this.status === "buffering" && this.canPlay()) {
             this.tryResumePlayback();
-            return;
-          }
-
-          if (this.status === "playing") {
-            this.tryAdvanceOrStall();
           }
         },
       },

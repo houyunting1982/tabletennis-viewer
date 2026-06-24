@@ -17,6 +17,7 @@ export class FrameClock {
     }
 
     this.running = true;
+    this.accumulator = 0;
     this.lastTimestamp = performance.now();
     this.animationId = requestAnimationFrame(this.loop);
   }
@@ -43,9 +44,13 @@ export class FrameClock {
     this.accumulator += delta;
 
     const frameDuration = 1000 / this.options.fps;
-    while (this.accumulator >= frameDuration) {
+    // One tick per animation frame max — avoids burst catch-up after decode/network jank.
+    if (this.accumulator >= frameDuration) {
       this.options.onTick();
       this.accumulator -= frameDuration;
+      if (this.accumulator > frameDuration * 4) {
+        this.accumulator = frameDuration * 4;
+      }
     }
 
     this.animationId = requestAnimationFrame(this.loop);
