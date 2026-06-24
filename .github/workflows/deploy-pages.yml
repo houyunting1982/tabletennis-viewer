@@ -1,0 +1,74 @@
+# Deploy frontend to Cloudflare Pages on push to main.
+#
+# Required GitHub repo secrets:
+#   CLOUDFLARE_API_TOKEN   — Cloudflare API token with "Cloudflare Pages · Edit"
+#   CLOUDFLARE_ACCOUNT_ID  — Account ID from Cloudflare dashboard
+#
+# Optional GitHub repo variables (Settings → Secrets and variables → Actions → Variables):
+#   VITE_CATALOG_URL              — default: https://cdn.tabletennislab.com/catalog.json
+#   CLOUDFLARE_PAGES_PROJECT_NAME — default: tabletennis-viewer
+#
+# Create the Pages project once in Cloudflare (or let wrangler create it on first deploy).
+
+name: Deploy Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  VITE_CATALOG_URL: ${{ vars.VITE_CATALOG_URL || 'https://cdn.tabletennislab.com/catalog.json' }}
+  CLOUDFLARE_PAGES_PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_NAME || 'tabletennis-viewer' }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 3
+
+  deploy:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - name: Download dist
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=${{ env.CLOUDFLARE_PAGES_PROJECT_NAME }}
