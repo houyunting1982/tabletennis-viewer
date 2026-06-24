@@ -1,34 +1,54 @@
 # Local assets (not in Git)
 
-Place large frame-sequence folders here. Scripts read `assets/Biba JPG/` by default.
+Large frame-sequence folders live here. Run `npm run generate-manifest` after adding or changing JPG folders.
 
-## Biba (current)
-
-Copy or move from the old repo:
-
-```bash
-cp -R "/Users/houyunting/GitProjects/TableTennis4dView/Biba JPG" "assets/Biba JPG"
-```
-
-Or symlink to avoid duplicating disk space:
-
-```bash
-ln -s "/Users/houyunting/GitProjects/TableTennis4dView/Biba JPG" "assets/Biba JPG"
-```
-
-## Other players (future)
-
-Add more top-level folders under `assets/` as needed, for example:
+## Layout
 
 ```
 assets/
-├── Biba JPG/
-├── Player2 JPG/
-└── Player3 JPG/
+├── Biba JPG/      → player id: biba
+├── Felipe JPG/    → player id: felipe
+└── Lupi JPG/      → player id: lupi
 ```
 
-Override the Biba path without moving files:
+Player folders and naming rules are defined in `scripts/players.config.mjs`.
+
+## Setup
+
+Copy or symlink from your source archive, for example:
+
+```bash
+ln -s "/path/to/Biba JPG" "assets/Biba JPG"
+ln -s "/path/to/Felipe JPG" "assets/Felipe JPG"
+ln -s "/path/to/Lupi JPG" "assets/Lupi JPG"
+```
+
+Then generate manifests and start dev:
+
+```bash
+npm run generate-manifest
+npm run dev
+```
+
+## Generate one player only
+
+```bash
+node scripts/generate-manifest.mjs --player=felipe
+```
+
+## Override a player folder path
 
 ```bash
 export BIBA_ASSETS_DIR="/absolute/path/to/Biba JPG"
+```
+
+(Other players: edit `scripts/players.config.mjs` or add env support later.)
+
+## CDN
+
+CDN upload is separate. After local playback works, use:
+
+```bash
+npm run generate-manifest:cdn
+npm run upload-r2
 ```

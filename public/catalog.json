@@ -7,8 +7,8 @@
         {
           "id": "01-fh-loop-off-block",
           "title": "FH Loop Off Block",
-          "manifestUrl": "/manifests/01-fh-loop-off-block.json",
-          "previewUrl": "/local-assets/01%20Biba%20FH%20Loop%20Off%20Block%20JPG/01BibaFHLoopOffBlockC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/01-fh-loop-off-block.json",
+          "previewUrl": "/local-assets/Biba%20JPG/01%20Biba%20FH%20Loop%20Off%20Block%20JPG/01BibaFHLoopOffBlockC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 62,
           "cameraCount": 24
@@ -16,8 +16,8 @@
         {
           "id": "02-fh-counter-loop",
           "title": "FH Counter Loop",
-          "manifestUrl": "/manifests/02-fh-counter-loop.json",
-          "previewUrl": "/local-assets/02%20Biba%20FH%20Counter%20Loop%20JPG/02BibaFHCounterLoopC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/02-fh-counter-loop.json",
+          "previewUrl": "/local-assets/Biba%20JPG/02%20Biba%20FH%20Counter%20Loop%20JPG/02BibaFHCounterLoopC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 82,
           "cameraCount": 24
@@ -25,8 +25,8 @@
         {
           "id": "03-fh-curve-loop",
           "title": "FH Curve Loop",
-          "manifestUrl": "/manifests/03-fh-curve-loop.json",
-          "previewUrl": "/local-assets/03%20Biba%20FH%20Curve%20Loop%20JPG/03BibaFHCurveOffTSC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/03-fh-curve-loop.json",
+          "previewUrl": "/local-assets/Biba%20JPG/03%20Biba%20FH%20Curve%20Loop%20JPG/03BibaFHCurveOffTSC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 117,
           "cameraCount": 24
@@ -34,8 +34,8 @@
         {
           "id": "04-fh-in-out-off-ts",
           "title": "FH In-Out Off TS",
-          "manifestUrl": "/manifests/04-fh-in-out-off-ts.json",
-          "previewUrl": "/local-assets/04%20Biba%20FH%20In-Out%20Off%20TS%20JPG/04BibaFHInOutOffTSC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/04-fh-in-out-off-ts.json",
+          "previewUrl": "/local-assets/Biba%20JPG/04%20Biba%20FH%20In-Out%20Off%20TS%20JPG/04BibaFHInOutOffTSC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 86,
           "cameraCount": 24
@@ -43,8 +43,8 @@
         {
           "id": "05-fh-loop-off-push",
           "title": "FH Loop Off Push",
-          "manifestUrl": "/manifests/05-fh-loop-off-push.json",
-          "previewUrl": "/local-assets/05%20Biba%20FH%20Loop%20Off%20Push%20JPG/05BibaFHLoopOffPushC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/05-fh-loop-off-push.json",
+          "previewUrl": "/local-assets/Biba%20JPG/05%20Biba%20FH%20Loop%20Off%20Push%20JPG/05BibaFHLoopOffPushC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 93,
           "cameraCount": 24
@@ -52,8 +52,8 @@
         {
           "id": "06-fh-loop-off-chop",
           "title": "FH Loop Off Chop",
-          "manifestUrl": "/manifests/06-fh-loop-off-chop.json",
-          "previewUrl": "/local-assets/06%20Biba%20FH%20Loop%20Off%20Chop%20JPG/06BibaFHLoopOffChopC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/06-fh-loop-off-chop.json",
+          "previewUrl": "/local-assets/Biba%20JPG/06%20Biba%20FH%20Loop%20Off%20Chop%20JPG/06BibaFHLoopOffChopC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 92,
           "cameraCount": 24
@@ -61,8 +61,8 @@
         {
           "id": "07-fh-high-arc-loop",
           "title": "FH High Arc Loop",
-          "manifestUrl": "/manifests/07-fh-high-arc-loop.json",
-          "previewUrl": "/local-assets/07%20Biba%20FH%20High%20Arc%20Loop%20JPG/07BibaFHHighArcLoopC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/07-fh-high-arc-loop.json",
+          "previewUrl": "/local-assets/Biba%20JPG/07%20Biba%20FH%20High%20Arc%20Loop%20JPG/07BibaFHHighArcLoopC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 112,
           "cameraCount": 24
@@ -70,8 +70,8 @@
         {
           "id": "08-fh-drive-loop-off-us",
           "title": "FH Drive Loop Off US",
-          "manifestUrl": "/manifests/08-fh-drive-loop-off-us.json",
-          "previewUrl": "/local-assets/08%20Biba%20FH%20Drive%20Loop%20Off%20US%20JPG/08BibaFHDriveLoopOffUSC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/08-fh-drive-loop-off-us.json",
+          "previewUrl": "/local-assets/Biba%20JPG/08%20Biba%20FH%20Drive%20Loop%20Off%20US%20JPG/08BibaFHDriveLoopOffUSC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 93,
           "cameraCount": 24
@@ -79,8 +79,8 @@
         {
           "id": "09-fh-in-out-off-us",
           "title": "FH In-Out Off US",
-          "manifestUrl": "/manifests/09-fh-in-out-off-us.json",
-          "previewUrl": "/local-assets/09%20Biba%20FH%20In-Out%20Off%20US%20JPG/09BibaFHInOutOffUSC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/09-fh-in-out-off-us.json",
+          "previewUrl": "/local-assets/Biba%20JPG/09%20Biba%20FH%20In-Out%20Off%20US%20JPG/09BibaFHInOutOffUSC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 89,
           "cameraCount": 24
@@ -88,8 +88,8 @@
         {
           "id": "10-fh-curve-off-us",
           "title": "FH Curve Off US",
-          "manifestUrl": "/manifests/10-fh-curve-off-us.json",
-          "previewUrl": "/local-assets/10%20Biba%20FH%20Curve%20Off%20US%20JPG/10BibaFHCurveOffUSC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/10-fh-curve-off-us.json",
+          "previewUrl": "/local-assets/Biba%20JPG/10%20Biba%20FH%20Curve%20Off%20US%20JPG/10BibaFHCurveOffUSC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 84,
           "cameraCount": 24
@@ -97,8 +97,8 @@
         {
           "id": "11-put-ball-in-play",
           "title": "Put Ball In Play",
-          "manifestUrl": "/manifests/11-put-ball-in-play.json",
-          "previewUrl": "/local-assets/11%20Biba%20Put%20Ball%20In%20Play%20JPG/11BibaPutBallInPlayC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/11-put-ball-in-play.json",
+          "previewUrl": "/local-assets/Biba%20JPG/11%20Biba%20Put%20Ball%20In%20Play%20JPG/11BibaPutBallInPlayC01_00216000.jpg",
           "category": "fundamentals",
           "frameCount": 91,
           "cameraCount": 24
@@ -106,8 +106,8 @@
         {
           "id": "12-fh-counter",
           "title": "FH Counter",
-          "manifestUrl": "/manifests/12-fh-counter.json",
-          "previewUrl": "/local-assets/12%20Biba%20FH%20Counter%20JPG/12BibaFHCounterC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/12-fh-counter.json",
+          "previewUrl": "/local-assets/Biba%20JPG/12%20Biba%20FH%20Counter%20JPG/12BibaFHCounterC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 67,
           "cameraCount": 24
@@ -115,8 +115,8 @@
         {
           "id": "13-fh-smash",
           "title": "FH Smash",
-          "manifestUrl": "/manifests/13-fh-smash.json",
-          "previewUrl": "/local-assets/13%20Biba%20FH%20Smash%20JPG/13BibaFHSmashC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/13-fh-smash.json",
+          "previewUrl": "/local-assets/Biba%20JPG/13%20Biba%20FH%20Smash%20JPG/13BibaFHSmashC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 103,
           "cameraCount": 24
@@ -124,8 +124,8 @@
         {
           "id": "13a-lob-smash",
           "title": "Lob Smash",
-          "manifestUrl": "/manifests/13a-lob-smash.json",
-          "previewUrl": "/local-assets/13a%20Biba%20Lob%20Smash%20JPG/13aBibaLobSmashC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/13a-lob-smash.json",
+          "previewUrl": "/local-assets/Biba%20JPG/13a%20Biba%20Lob%20Smash%20JPG/13aBibaLobSmashC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 137,
           "cameraCount": 24
@@ -133,8 +133,8 @@
         {
           "id": "14-fh-passive-block",
           "title": "FH Passive Block",
-          "manifestUrl": "/manifests/14-fh-passive-block.json",
-          "previewUrl": "/local-assets/14%20Biba%20FH%20Passive%20Block%20JPG/14BibaFHPassiveBlockC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/14-fh-passive-block.json",
+          "previewUrl": "/local-assets/Biba%20JPG/14%20Biba%20FH%20Passive%20Block%20JPG/14BibaFHPassiveBlockC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 62,
           "cameraCount": 24
@@ -142,8 +142,8 @@
         {
           "id": "15-fh-active-block",
           "title": "FH Active Block",
-          "manifestUrl": "/manifests/15-fh-active-block.json",
-          "previewUrl": "/local-assets/15%20Biba%20FH%20Active%20Block%20JPG/15BibaFHActiveBlockC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/15-fh-active-block.json",
+          "previewUrl": "/local-assets/Biba%20JPG/15%20Biba%20FH%20Active%20Block%20JPG/15BibaFHActiveBlockC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 63,
           "cameraCount": 24
@@ -151,8 +151,8 @@
         {
           "id": "16-fh-chop",
           "title": "FH Chop",
-          "manifestUrl": "/manifests/16-fh-chop.json",
-          "previewUrl": "/local-assets/16%20Biba%20FH%20Chop%20JPG/16BibaFHChopC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/16-fh-chop.json",
+          "previewUrl": "/local-assets/Biba%20JPG/16%20Biba%20FH%20Chop%20JPG/16BibaFHChopC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 92,
           "cameraCount": 24
@@ -160,8 +160,8 @@
         {
           "id": "17-fh-fish",
           "title": "FH Fish",
-          "manifestUrl": "/manifests/17-fh-fish.json",
-          "previewUrl": "/local-assets/17%20Biba%20FH%20Fish%20JPG/17BibaFHFishC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/17-fh-fish.json",
+          "previewUrl": "/local-assets/Biba%20JPG/17%20Biba%20FH%20Fish%20JPG/17BibaFHFishC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 83,
           "cameraCount": 24
@@ -169,8 +169,8 @@
         {
           "id": "18-fh-lob",
           "title": "FH Lob",
-          "manifestUrl": "/manifests/18-fh-lob.json",
-          "previewUrl": "/local-assets/18%20Biba%20FH%20Lob%20JPG/18BibaFHLobC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/18-fh-lob.json",
+          "previewUrl": "/local-assets/Biba%20JPG/18%20Biba%20FH%20Lob%20JPG/18BibaFHLobC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 89,
           "cameraCount": 24
@@ -178,8 +178,8 @@
         {
           "id": "19-fh-push",
           "title": "FH Push",
-          "manifestUrl": "/manifests/19-fh-push.json",
-          "previewUrl": "/local-assets/19.%20Biba%20FH%20Push%20JPG/19.BibaFHpushC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/19-fh-push.json",
+          "previewUrl": "/local-assets/Biba%20JPG/19.%20Biba%20FH%20Push%20JPG/19.BibaFHpushC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 137,
           "cameraCount": 24
@@ -187,8 +187,8 @@
         {
           "id": "20-fh-drop-shot",
           "title": "FH Drop Shot",
-          "manifestUrl": "/manifests/20-fh-drop-shot.json",
-          "previewUrl": "/local-assets/20.%20Biba%20FH%20Drop%20Shot%20JPG/20.BibaFHDrop60fpsC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/20-fh-drop-shot.json",
+          "previewUrl": "/local-assets/Biba%20JPG/20.%20Biba%20FH%20Drop%20Shot%20JPG/20.BibaFHDrop60fpsC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 119,
           "cameraCount": 24
@@ -196,8 +196,8 @@
         {
           "id": "21-fh-flip",
           "title": "FH Flip",
-          "manifestUrl": "/manifests/21-fh-flip.json",
-          "previewUrl": "/local-assets/21.%20Biba%20FH%20Flip%20JPG/21.BibaFHFlip60fpsC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/21-fh-flip.json",
+          "previewUrl": "/local-assets/Biba%20JPG/21.%20Biba%20FH%20Flip%20JPG/21.BibaFHFlip60fpsC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 125,
           "cameraCount": 24
@@ -205,8 +205,8 @@
         {
           "id": "22-fh-slide",
           "title": "FH Slide",
-          "manifestUrl": "/manifests/22-fh-slide.json",
-          "previewUrl": "/local-assets/22.%20Biba%20FH%20Slide%20JPG/22.BibaFHSlideC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/22-fh-slide.json",
+          "previewUrl": "/local-assets/Biba%20JPG/22.%20Biba%20FH%20Slide%20JPG/22.BibaFHSlideC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 116,
           "cameraCount": 24
@@ -214,8 +214,8 @@
         {
           "id": "22a-fh-slide-from-bh",
           "title": "FH Slide from BH",
-          "manifestUrl": "/manifests/22a-fh-slide-from-bh.json",
-          "previewUrl": "/local-assets/22A%20Biba%20FH%20Slide%20from%20BH%20JPG/22ABibaFHSlidefromFHC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/22a-fh-slide-from-bh.json",
+          "previewUrl": "/local-assets/Biba%20JPG/22A%20Biba%20FH%20Slide%20from%20BH%20JPG/22ABibaFHSlidefromFHC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 113,
           "cameraCount": 24
@@ -223,8 +223,8 @@
         {
           "id": "23-fh-shove",
           "title": "FH Shove",
-          "manifestUrl": "/manifests/23-fh-shove.json",
-          "previewUrl": "/local-assets/23.%20Biba%20FH%20Shove%20JPG/23.BibaFHShoveC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/23-fh-shove.json",
+          "previewUrl": "/local-assets/Biba%20JPG/23.%20Biba%20FH%20Shove%20JPG/23.BibaFHShoveC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 126,
           "cameraCount": 24
@@ -232,8 +232,8 @@
         {
           "id": "23a-fh-shove-from-bh",
           "title": "FH Shove from BH",
-          "manifestUrl": "/manifests/23a-fh-shove-from-bh.json",
-          "previewUrl": "/local-assets/23A%20Biba%20FH%20Shove%20from%20BH%20JPG/23ABibaFHShoveFromBHC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/23a-fh-shove-from-bh.json",
+          "previewUrl": "/local-assets/Biba%20JPG/23A%20Biba%20FH%20Shove%20from%20BH%20JPG/23ABibaFHShoveFromBHC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 110,
           "cameraCount": 24
@@ -241,8 +241,8 @@
         {
           "id": "24-fh-lift",
           "title": "FH Lift",
-          "manifestUrl": "/manifests/24-fh-lift.json",
-          "previewUrl": "/local-assets/24.%20Biba%20FH%20Lift%20JPG/24.BibaFHLiftC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/24-fh-lift.json",
+          "previewUrl": "/local-assets/Biba%20JPG/24.%20Biba%20FH%20Lift%20JPG/24.BibaFHLiftC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 113,
           "cameraCount": 24
@@ -250,8 +250,8 @@
         {
           "id": "25-bh-loop-off-block",
           "title": "BH Loop Off Block",
-          "manifestUrl": "/manifests/25-bh-loop-off-block.json",
-          "previewUrl": "/local-assets/25%20Biba%20BH%20Loop%20Off%20Block%20JPG/25BibaBHLoopOffBlockC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/25-bh-loop-off-block.json",
+          "previewUrl": "/local-assets/Biba%20JPG/25%20Biba%20BH%20Loop%20Off%20Block%20JPG/25BibaBHLoopOffBlockC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 74,
           "cameraCount": 24
@@ -259,8 +259,8 @@
         {
           "id": "26-bh-counter-loop",
           "title": "BH Counter Loop",
-          "manifestUrl": "/manifests/26-bh-counter-loop.json",
-          "previewUrl": "/local-assets/26%20Biba%20BH%20Counter%20Loop%20JPG/26BibaBHCounterLoopC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/26-bh-counter-loop.json",
+          "previewUrl": "/local-assets/Biba%20JPG/26%20Biba%20BH%20Counter%20Loop%20JPG/26BibaBHCounterLoopC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 96,
           "cameraCount": 24
@@ -268,8 +268,8 @@
         {
           "id": "27-bh-curve-off-ts",
           "title": "BH Curve Off TS",
-          "manifestUrl": "/manifests/27-bh-curve-off-ts.json",
-          "previewUrl": "/local-assets/27%20Biba%20BH%20Curve%20Off%20TS%20JPG/27BibaBHCurveOffTSC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/27-bh-curve-off-ts.json",
+          "previewUrl": "/local-assets/Biba%20JPG/27%20Biba%20BH%20Curve%20Off%20TS%20JPG/27BibaBHCurveOffTSC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 80,
           "cameraCount": 24
@@ -277,8 +277,8 @@
         {
           "id": "28-bh-in-out-off-ts",
           "title": "BH In-Out Off TS",
-          "manifestUrl": "/manifests/28-bh-in-out-off-ts.json",
-          "previewUrl": "/local-assets/28%20Biba%20BH%20In-Out%20Off%20TS%20JPG/28BibaBHInOutOffTSC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/28-bh-in-out-off-ts.json",
+          "previewUrl": "/local-assets/Biba%20JPG/28%20Biba%20BH%20In-Out%20Off%20TS%20JPG/28BibaBHInOutOffTSC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 96,
           "cameraCount": 24
@@ -286,8 +286,8 @@
         {
           "id": "29-bh-loop-off-push",
           "title": "BH Loop Off Push",
-          "manifestUrl": "/manifests/29-bh-loop-off-push.json",
-          "previewUrl": "/local-assets/29%20Biba%20BH%20Loop%20Off%20Push%20JPG/29BibaBHLoopOffPushC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/29-bh-loop-off-push.json",
+          "previewUrl": "/local-assets/Biba%20JPG/29%20Biba%20BH%20Loop%20Off%20Push%20JPG/29BibaBHLoopOffPushC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 85,
           "cameraCount": 24
@@ -295,8 +295,8 @@
         {
           "id": "30-bh-loop-off-chop",
           "title": "BH Loop Off Chop",
-          "manifestUrl": "/manifests/30-bh-loop-off-chop.json",
-          "previewUrl": "/local-assets/30%20Biba%20BH%20Loop%20Off%20Chop%20JPG/30BibaBHLoopOffChopC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/30-bh-loop-off-chop.json",
+          "previewUrl": "/local-assets/Biba%20JPG/30%20Biba%20BH%20Loop%20Off%20Chop%20JPG/30BibaBHLoopOffChopC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 82,
           "cameraCount": 24
@@ -304,8 +304,8 @@
         {
           "id": "31-bh-high-arc",
           "title": "BH High Arc",
-          "manifestUrl": "/manifests/31-bh-high-arc.json",
-          "previewUrl": "/local-assets/31%20Biba%20BH%20High%20Arc%20JPG/31BibaBHHighArcC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/31-bh-high-arc.json",
+          "previewUrl": "/local-assets/Biba%20JPG/31%20Biba%20BH%20High%20Arc%20JPG/31BibaBHHighArcC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 94,
           "cameraCount": 24
@@ -313,8 +313,8 @@
         {
           "id": "32-bh-drive-off-us",
           "title": "BH Drive Off US",
-          "manifestUrl": "/manifests/32-bh-drive-off-us.json",
-          "previewUrl": "/local-assets/32%20Biba%20BH%20Drive%20Off%20US%20JPG/32BibaBHDriveOffUSC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/32-bh-drive-off-us.json",
+          "previewUrl": "/local-assets/Biba%20JPG/32%20Biba%20BH%20Drive%20Off%20US%20JPG/32BibaBHDriveOffUSC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 87,
           "cameraCount": 24
@@ -322,8 +322,8 @@
         {
           "id": "33-bh-in-out-off-us",
           "title": "BH In-Out Off US",
-          "manifestUrl": "/manifests/33-bh-in-out-off-us.json",
-          "previewUrl": "/local-assets/33%20Biba%20BH%20In-Out%20Off%20US%20JPG/33BibaBHInOutOffUSC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/33-bh-in-out-off-us.json",
+          "previewUrl": "/local-assets/Biba%20JPG/33%20Biba%20BH%20In-Out%20Off%20US%20JPG/33BibaBHInOutOffUSC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 94,
           "cameraCount": 24
@@ -331,8 +331,8 @@
         {
           "id": "34-bh-curve-off-us",
           "title": "BH Curve Off US",
-          "manifestUrl": "/manifests/34-bh-curve-off-us.json",
-          "previewUrl": "/local-assets/34%20Biba%20BH%20Curve%20Off%20US%20JPG/34BibaFHCurveOffUSC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/34-bh-curve-off-us.json",
+          "previewUrl": "/local-assets/Biba%20JPG/34%20Biba%20BH%20Curve%20Off%20US%20JPG/34BibaFHCurveOffUSC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 83,
           "cameraCount": 24
@@ -340,8 +340,8 @@
         {
           "id": "35-bh-counter",
           "title": "BH Counter",
-          "manifestUrl": "/manifests/35-bh-counter.json",
-          "previewUrl": "/local-assets/35%20Biba%20BH%20Counter%20JPG/35BibaBHCounterC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/35-bh-counter.json",
+          "previewUrl": "/local-assets/Biba%20JPG/35%20Biba%20BH%20Counter%20JPG/35BibaBHCounterC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 46,
           "cameraCount": 24
@@ -349,8 +349,8 @@
         {
           "id": "36-bh-smash",
           "title": "BH Smash",
-          "manifestUrl": "/manifests/36-bh-smash.json",
-          "previewUrl": "/local-assets/36%20Biba%20BH%20Smash%20JPG/36BibaBHSmashC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/36-bh-smash.json",
+          "previewUrl": "/local-assets/Biba%20JPG/36%20Biba%20BH%20Smash%20JPG/36BibaBHSmashC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 89,
           "cameraCount": 24
@@ -358,8 +358,8 @@
         {
           "id": "36a-high-ball-smash",
           "title": "High Ball Smash",
-          "manifestUrl": "/manifests/36a-high-ball-smash.json",
-          "previewUrl": "/local-assets/36a%20Biba%20High%20Ball%20Smash%20JPG/36BibaBHSmashHighBallC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/36a-high-ball-smash.json",
+          "previewUrl": "/local-assets/Biba%20JPG/36a%20Biba%20High%20Ball%20Smash%20JPG/36BibaBHSmashHighBallC01_00216000.jpg",
           "category": "forehand",
           "frameCount": 120,
           "cameraCount": 24
@@ -367,8 +367,8 @@
         {
           "id": "37-bh-passive-block",
           "title": "BH Passive Block",
-          "manifestUrl": "/manifests/37-bh-passive-block.json",
-          "previewUrl": "/local-assets/37%20Biba%20BH%20Passive%20Block%20JPG/37BibaBHPassiveBlockC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/37-bh-passive-block.json",
+          "previewUrl": "/local-assets/Biba%20JPG/37%20Biba%20BH%20Passive%20Block%20JPG/37BibaBHPassiveBlockC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 80,
           "cameraCount": 24
@@ -376,8 +376,8 @@
         {
           "id": "38-bh-active-block",
           "title": "BH Active Block",
-          "manifestUrl": "/manifests/38-bh-active-block.json",
-          "previewUrl": "/local-assets/38%20Biba%20BH%20Active%20Block%20JPG/38BibaActiveBlockC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/38-bh-active-block.json",
+          "previewUrl": "/local-assets/Biba%20JPG/38%20Biba%20BH%20Active%20Block%20JPG/38BibaActiveBlockC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 71,
           "cameraCount": 24
@@ -385,8 +385,8 @@
         {
           "id": "39-bh-chop-block",
           "title": "BH Chop Block",
-          "manifestUrl": "/manifests/39-bh-chop-block.json",
-          "previewUrl": "/local-assets/39%20Biba%20BH%20Chop%20Block%20JPG/39BibaBHChopBlockC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/39-bh-chop-block.json",
+          "previewUrl": "/local-assets/Biba%20JPG/39%20Biba%20BH%20Chop%20Block%20JPG/39BibaBHChopBlockC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 71,
           "cameraCount": 24
@@ -394,8 +394,8 @@
         {
           "id": "40-bh-chop",
           "title": "BH Chop",
-          "manifestUrl": "/manifests/40-bh-chop.json",
-          "previewUrl": "/local-assets/40%20Biba%20BH%20Chop%20JPG/40BibaBHChopC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/40-bh-chop.json",
+          "previewUrl": "/local-assets/Biba%20JPG/40%20Biba%20BH%20Chop%20JPG/40BibaBHChopC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 103,
           "cameraCount": 24
@@ -403,8 +403,8 @@
         {
           "id": "41-bh-fish",
           "title": "BH Fish",
-          "manifestUrl": "/manifests/41-bh-fish.json",
-          "previewUrl": "/local-assets/41%20Biba%20BH%20Fish%20JPG/41BibaBHFishC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/41-bh-fish.json",
+          "previewUrl": "/local-assets/Biba%20JPG/41%20Biba%20BH%20Fish%20JPG/41BibaBHFishC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 67,
           "cameraCount": 24
@@ -412,8 +412,8 @@
         {
           "id": "42-bh-lob",
           "title": "BH Lob",
-          "manifestUrl": "/manifests/42-bh-lob.json",
-          "previewUrl": "/local-assets/42%20Biba%20BH%20Lob%20JPG/42BibaBHLobC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/42-bh-lob.json",
+          "previewUrl": "/local-assets/Biba%20JPG/42%20Biba%20BH%20Lob%20JPG/42BibaBHLobC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 82,
           "cameraCount": 24
@@ -421,8 +421,8 @@
         {
           "id": "43-bh-push",
           "title": "BH Push",
-          "manifestUrl": "/manifests/43-bh-push.json",
-          "previewUrl": "/local-assets/43.%20Biba%20BH%20Push%20JPG/43BibaBHPushC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/43-bh-push.json",
+          "previewUrl": "/local-assets/Biba%20JPG/43.%20Biba%20BH%20Push%20JPG/43BibaBHPushC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 117,
           "cameraCount": 24
@@ -430,8 +430,8 @@
         {
           "id": "44-bh-drop-shot",
           "title": "BH Drop Shot",
-          "manifestUrl": "/manifests/44-bh-drop-shot.json",
-          "previewUrl": "/local-assets/44.%20Biba%20BH%20Drop%20Shot%20JPG/44BibaBHDropShotC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/44-bh-drop-shot.json",
+          "previewUrl": "/local-assets/Biba%20JPG/44.%20Biba%20BH%20Drop%20Shot%20JPG/44BibaBHDropShotC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 133,
           "cameraCount": 24
@@ -439,8 +439,8 @@
         {
           "id": "45-bh-flip",
           "title": "BH Flip",
-          "manifestUrl": "/manifests/45-bh-flip.json",
-          "previewUrl": "/local-assets/45.%20Biba%20BH%20Flip%20JPG/45BibaBHFlipC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/45-bh-flip.json",
+          "previewUrl": "/local-assets/Biba%20JPG/45.%20Biba%20BH%20Flip%20JPG/45BibaBHFlipC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 140,
           "cameraCount": 24
@@ -448,8 +448,8 @@
         {
           "id": "46-bh-slide",
           "title": "BH Slide",
-          "manifestUrl": "/manifests/46-bh-slide.json",
-          "previewUrl": "/local-assets/46.%20Biba%20BH%20Slide%20JPG/46BibaBHSlideC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/46-bh-slide.json",
+          "previewUrl": "/local-assets/Biba%20JPG/46.%20Biba%20BH%20Slide%20JPG/46BibaBHSlideC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 123,
           "cameraCount": 24
@@ -457,8 +457,8 @@
         {
           "id": "46a-bh-slide",
           "title": "BH Slide",
-          "manifestUrl": "/manifests/46a-bh-slide.json",
-          "previewUrl": "/local-assets/46A%20Biba%20BH%20Slide%20JPG/46ABibaBHSlideC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/46a-bh-slide.json",
+          "previewUrl": "/local-assets/Biba%20JPG/46A%20Biba%20BH%20Slide%20JPG/46ABibaBHSlideC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 102,
           "cameraCount": 24
@@ -466,8 +466,8 @@
         {
           "id": "47-bh-shove",
           "title": "BH Shove",
-          "manifestUrl": "/manifests/47-bh-shove.json",
-          "previewUrl": "/local-assets/47%20Biba%20BH%20Shove%20JPG/47BibaBHShoveC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/47-bh-shove.json",
+          "previewUrl": "/local-assets/Biba%20JPG/47%20Biba%20BH%20Shove%20JPG/47BibaBHShoveC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 124,
           "cameraCount": 24
@@ -475,8 +475,8 @@
         {
           "id": "47a-bh-shove",
           "title": "BH Shove",
-          "manifestUrl": "/manifests/47a-bh-shove.json",
-          "previewUrl": "/local-assets/47A%20Biba%20BH%20Shove%20JPG/47ABibaBHShoveC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/47a-bh-shove.json",
+          "previewUrl": "/local-assets/Biba%20JPG/47A%20Biba%20BH%20Shove%20JPG/47ABibaBHShoveC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 109,
           "cameraCount": 24
@@ -484,8 +484,8 @@
         {
           "id": "48-bh-lift",
           "title": "BH Lift",
-          "manifestUrl": "/manifests/48-bh-lift.json",
-          "previewUrl": "/local-assets/48%20Biba%20BH%20Lift%20JPG/48BibaBHLiftC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/48-bh-lift.json",
+          "previewUrl": "/local-assets/Biba%20JPG/48%20Biba%20BH%20Lift%20JPG/48BibaBHLiftC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 123,
           "cameraCount": 24
@@ -493,8 +493,8 @@
         {
           "id": "49-bh-banana",
           "title": "BH Banana",
-          "manifestUrl": "/manifests/49-bh-banana.json",
-          "previewUrl": "/local-assets/49.%20Biba%20BH%20Banana%20JPG/49.BibaBHBananaC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/49-bh-banana.json",
+          "previewUrl": "/local-assets/Biba%20JPG/49.%20Biba%20BH%20Banana%20JPG/49.BibaBHBananaC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 108,
           "cameraCount": 24
@@ -502,8 +502,8 @@
         {
           "id": "50-bh-strawberry",
           "title": "BH Strawberry",
-          "manifestUrl": "/manifests/50-bh-strawberry.json",
-          "previewUrl": "/local-assets/50.%20Biba%20BH%20Strawberry%20JPG/50.BibaBHStrawberryC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/50-bh-strawberry.json",
+          "previewUrl": "/local-assets/Biba%20JPG/50.%20Biba%20BH%20Strawberry%20JPG/50.BibaBHStrawberryC01_00216000.jpg",
           "category": "backhand",
           "frameCount": 129,
           "cameraCount": 24
@@ -511,8 +511,8 @@
         {
           "id": "51-fh-us-serve",
           "title": "FH US Serve",
-          "manifestUrl": "/manifests/51-fh-us-serve.json",
-          "previewUrl": "/local-assets/51%20Biba%20FH%20US%20Serve%20JPG/51BibaFHUSServeC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/51-fh-us-serve.json",
+          "previewUrl": "/local-assets/Biba%20JPG/51%20Biba%20FH%20US%20Serve%20JPG/51BibaFHUSServeC01_00216000.jpg",
           "category": "serve",
           "frameCount": 109,
           "cameraCount": 24
@@ -520,8 +520,8 @@
         {
           "id": "52-bh-us-serve",
           "title": "BH US Serve",
-          "manifestUrl": "/manifests/52-bh-us-serve.json",
-          "previewUrl": "/local-assets/52%20Biba%20BH%20US%20Serve%20JPG/52BibaBHUSServeC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/52-bh-us-serve.json",
+          "previewUrl": "/local-assets/Biba%20JPG/52%20Biba%20BH%20US%20Serve%20JPG/52BibaBHUSServeC01_00216000.jpg",
           "category": "serve",
           "frameCount": 98,
           "cameraCount": 24
@@ -529,8 +529,8 @@
         {
           "id": "57-fh-ts-serve",
           "title": "FH TS Serve",
-          "manifestUrl": "/manifests/57-fh-ts-serve.json",
-          "previewUrl": "/local-assets/57%20Biba%20FH%20TS%20Serve%20JPG/57BibaFHTSServeC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/57-fh-ts-serve.json",
+          "previewUrl": "/local-assets/Biba%20JPG/57%20Biba%20FH%20TS%20Serve%20JPG/57BibaFHTSServeC01_00216000.jpg",
           "category": "serve",
           "frameCount": 109,
           "cameraCount": 24
@@ -538,8 +538,8 @@
         {
           "id": "58-bh-ts-serve",
           "title": "BH TS Serve",
-          "manifestUrl": "/manifests/58-bh-ts-serve.json",
-          "previewUrl": "/local-assets/58%20Biba%20BH%20TS%20Serve%20JPG/58BibaBHTSServeC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/58-bh-ts-serve.json",
+          "previewUrl": "/local-assets/Biba%20JPG/58%20Biba%20BH%20TS%20Serve%20JPG/58BibaBHTSServeC01_00216000.jpg",
           "category": "serve",
           "frameCount": 89,
           "cameraCount": 24
@@ -547,8 +547,8 @@
         {
           "id": "59-fh-tomahawk",
           "title": "FH Tomahawk",
-          "manifestUrl": "/manifests/59-fh-tomahawk.json",
-          "previewUrl": "/local-assets/59%20Biba%20FH%20Tomahawk%20JPG/59BibaFHTomahawkC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/59-fh-tomahawk.json",
+          "previewUrl": "/local-assets/Biba%20JPG/59%20Biba%20FH%20Tomahawk%20JPG/59BibaFHTomahawkC01_00216000.jpg",
           "category": "serve",
           "frameCount": 105,
           "cameraCount": 24
@@ -556,8 +556,8 @@
         {
           "id": "59b-bh-tomahawk",
           "title": "BH Tomahawk",
-          "manifestUrl": "/manifests/59b-bh-tomahawk.json",
-          "previewUrl": "/local-assets/59b%20Biba%20BH%20Tomahawk%20JPG/59bBibaBHTomahawkC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/59b-bh-tomahawk.json",
+          "previewUrl": "/local-assets/Biba%20JPG/59b%20Biba%20BH%20Tomahawk%20JPG/59bBibaBHTomahawkC01_00216000.jpg",
           "category": "serve",
           "frameCount": 91,
           "cameraCount": 24
@@ -565,8 +565,8 @@
         {
           "id": "60-ready-position",
           "title": "Ready Position",
-          "manifestUrl": "/manifests/60-ready-position.json",
-          "previewUrl": "/local-assets/60%20Biba%20Ready%20Position%20JPG/60BibaReadyPositionC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/60-ready-position.json",
+          "previewUrl": "/local-assets/Biba%20JPG/60%20Biba%20Ready%20Position%20JPG/60BibaReadyPositionC01_00216000.jpg",
           "category": "footwork",
           "frameCount": 133,
           "cameraCount": 24
@@ -574,8 +574,8 @@
         {
           "id": "61-one-step",
           "title": "One Step",
-          "manifestUrl": "/manifests/61-one-step.json",
-          "previewUrl": "/local-assets/61%20Biba%20One%20Step%20JPG/61BibaOneStepC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/61-one-step.json",
+          "previewUrl": "/local-assets/Biba%20JPG/61%20Biba%20One%20Step%20JPG/61BibaOneStepC01_00216000.jpg",
           "category": "footwork",
           "frameCount": 183,
           "cameraCount": 24
@@ -583,8 +583,8 @@
         {
           "id": "62-turn",
           "title": "Turn",
-          "manifestUrl": "/manifests/62-turn.json",
-          "previewUrl": "/local-assets/62%20Biba%20Turn%20JPG/62BibaTurnC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/62-turn.json",
+          "previewUrl": "/local-assets/Biba%20JPG/62%20Biba%20Turn%20JPG/62BibaTurnC01_00216000.jpg",
           "category": "footwork",
           "frameCount": 125,
           "cameraCount": 24
@@ -592,8 +592,8 @@
         {
           "id": "63-recover-from-serve",
           "title": "Recover From Serve",
-          "manifestUrl": "/manifests/63-recover-from-serve.json",
-          "previewUrl": "/local-assets/63%20Biba%20Recover%20From%20Serve%20JPG/63BibaRecoverServeC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/63-recover-from-serve.json",
+          "previewUrl": "/local-assets/Biba%20JPG/63%20Biba%20Recover%20From%20Serve%20JPG/63BibaRecoverServeC01_00216000.jpg",
           "category": "footwork",
           "frameCount": 129,
           "cameraCount": 24
@@ -601,10 +601,1192 @@
         {
           "id": "64-cross-step",
           "title": "Cross Step",
-          "manifestUrl": "/manifests/64-cross-step.json",
-          "previewUrl": "/local-assets/64%20Biba%20Cross%20Step%20JPG/64BibaCrossStepC01_00216000.jpg",
+          "manifestUrl": "/manifests/biba/64-cross-step.json",
+          "previewUrl": "/local-assets/Biba%20JPG/64%20Biba%20Cross%20Step%20JPG/64BibaCrossStepC01_00216000.jpg",
           "category": "footwork",
           "frameCount": 155,
+          "cameraCount": 24
+        }
+      ]
+    },
+    {
+      "id": "felipe",
+      "name": "Felipe",
+      "techniques": [
+        {
+          "id": "01-loop-off-block",
+          "title": "Loop Off Block",
+          "manifestUrl": "/manifests/felipe/01-loop-off-block.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/01%20Felipe%20Loop%20Off%20Block%20JPG/01FelipeFHLoopOffBlockC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 57,
+          "cameraCount": 24
+        },
+        {
+          "id": "02-fh-counter-loop",
+          "title": "FH Counter Loop",
+          "manifestUrl": "/manifests/felipe/02-fh-counter-loop.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/02%20Felipe%20FH%20Counter%20Loop%20JPG/02FelipeFHCounterLoopC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 76,
+          "cameraCount": 24
+        },
+        {
+          "id": "03-fh-curve-off-ts",
+          "title": "FH Curve Off TS",
+          "manifestUrl": "/manifests/felipe/03-fh-curve-off-ts.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/03%20Felipe%20FH%20Curve%20Off%20TS%20JPG/03FelipeFHCurveOffTSC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 98,
+          "cameraCount": 24
+        },
+        {
+          "id": "04-fh-in-out-off-ts",
+          "title": "FH In-Out Off TS",
+          "manifestUrl": "/manifests/felipe/04-fh-in-out-off-ts.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/04%20Felipe%20FH%20In-Out%20Off%20TS%20JPG/04FelipeFHInOutOffTSC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 80,
+          "cameraCount": 24
+        },
+        {
+          "id": "05-fh-loop-off-push",
+          "title": "FH Loop Off Push",
+          "manifestUrl": "/manifests/felipe/05-fh-loop-off-push.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/05%20Felipe%20FH%20Loop%20Off%20Push%20JPG/05FelipeFHLoopOffPushC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 83,
+          "cameraCount": 24
+        },
+        {
+          "id": "06-fh-loop-off-chop",
+          "title": "FH Loop Off Chop",
+          "manifestUrl": "/manifests/felipe/06-fh-loop-off-chop.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/06%20Felipe%20FH%20Loop%20Off%20Chop%20JPG/06FelipeFHLoopOffChopC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 104,
+          "cameraCount": 24
+        },
+        {
+          "id": "07-fh-high-arc-loop",
+          "title": "FH High Arc Loop",
+          "manifestUrl": "/manifests/felipe/07-fh-high-arc-loop.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/07%20Felipe%20FH%20High%20Arc%20Loop%20JPG/07FelipeFHHighArcLoopC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 101,
+          "cameraCount": 24
+        },
+        {
+          "id": "08-fh-drive-loop-off-us",
+          "title": "FH Drive Loop Off US",
+          "manifestUrl": "/manifests/felipe/08-fh-drive-loop-off-us.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/08%20Felipe%20FH%20Drive%20Loop%20Off%20US%20JPG/08FelipeFHDriveOffUSC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 110,
+          "cameraCount": 24
+        },
+        {
+          "id": "09-fh-in-out-off-us",
+          "title": "FH In-Out Off US",
+          "manifestUrl": "/manifests/felipe/09-fh-in-out-off-us.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/09%20Felipe%20FH%20In-Out%20Off%20US%20JPG/09FelipeFHInOutOffUSC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 97,
+          "cameraCount": 24
+        },
+        {
+          "id": "10-fh-curve-off-us",
+          "title": "FH Curve Off US",
+          "manifestUrl": "/manifests/felipe/10-fh-curve-off-us.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/10%20Felipe%20FH%20Curve%20Off%20US%20JPG/10FelipeFHCurveOffUSC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 116,
+          "cameraCount": 24
+        },
+        {
+          "id": "11-put-ball-in-play",
+          "title": "Put Ball In Play",
+          "manifestUrl": "/manifests/felipe/11-put-ball-in-play.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/11%20Felipe%20Put%20Ball%20In%20Play%20JPG/11FelipePutBallInPlayC01_00216000.jpg",
+          "category": "fundamentals",
+          "frameCount": 85,
+          "cameraCount": 24
+        },
+        {
+          "id": "12-fh-counter",
+          "title": "FH Counter",
+          "manifestUrl": "/manifests/felipe/12-fh-counter.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/12%20Felipe%20FH%20Counter%20JPG/12FelipeFHCounterC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 63,
+          "cameraCount": 24
+        },
+        {
+          "id": "13-fh-smash",
+          "title": "FH Smash",
+          "manifestUrl": "/manifests/felipe/13-fh-smash.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/13%20Felipe%20FH%20Smash%20JPG/13FelipeFHSmashC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 94,
+          "cameraCount": 24
+        },
+        {
+          "id": "13a-lob-smash",
+          "title": "Lob Smash",
+          "manifestUrl": "/manifests/felipe/13a-lob-smash.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/13a%20Felipe%20Lob%20Smash%20JPG/13aFelipeLobSmashC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 126,
+          "cameraCount": 24
+        },
+        {
+          "id": "14-fh-passive-block",
+          "title": "FH Passive Block",
+          "manifestUrl": "/manifests/felipe/14-fh-passive-block.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/14%20Felipe%20FH%20Passive%20Block%20JPG/14FelipeFHPassiveBlockC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 71,
+          "cameraCount": 24
+        },
+        {
+          "id": "15-fh-active-block",
+          "title": "FH Active Block",
+          "manifestUrl": "/manifests/felipe/15-fh-active-block.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/15%20Felipe%20FH%20Active%20Block%20JPG/15FelipeFHActiveBlockC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 61,
+          "cameraCount": 24
+        },
+        {
+          "id": "16-fh-chop",
+          "title": "FH Chop",
+          "manifestUrl": "/manifests/felipe/16-fh-chop.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/16%20Felipe%20FH%20Chop%20JPG/16FelipeFHChopC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 86,
+          "cameraCount": 24
+        },
+        {
+          "id": "17-fh-fish",
+          "title": "FH Fish",
+          "manifestUrl": "/manifests/felipe/17-fh-fish.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/17%20Felipe%20FH%20Fish%20JPG/17FelipeFHFishC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 71,
+          "cameraCount": 24
+        },
+        {
+          "id": "18-fh-lob",
+          "title": "FH Lob",
+          "manifestUrl": "/manifests/felipe/18-fh-lob.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/18%20Felipe%20FH%20Lob%20JPG/18FelipeFHLobC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 81,
+          "cameraCount": 24
+        },
+        {
+          "id": "19-fh-push",
+          "title": "FH Push",
+          "manifestUrl": "/manifests/felipe/19-fh-push.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/19.%20Felipe%20FH%20Push%20JPG/19.FelipeFHPushC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 119,
+          "cameraCount": 24
+        },
+        {
+          "id": "20-fh-drop-shot",
+          "title": "FH Drop Shot",
+          "manifestUrl": "/manifests/felipe/20-fh-drop-shot.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/20.%20Felipe%20FH%20Drop%20Shot%20JPG/20FelipeFHDropShotC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 104,
+          "cameraCount": 24
+        },
+        {
+          "id": "21-fh-flip",
+          "title": "FH Flip",
+          "manifestUrl": "/manifests/felipe/21-fh-flip.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/21.%20Felipe%20FH%20Flip%20JPG/21.FelipeFHFlipC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 102,
+          "cameraCount": 24
+        },
+        {
+          "id": "22-fh-slide",
+          "title": "FH Slide",
+          "manifestUrl": "/manifests/felipe/22-fh-slide.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/22.%20Felipe%20FH%20Slide%20JPG/22.FelipeFHSlideC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 109,
+          "cameraCount": 24
+        },
+        {
+          "id": "22a-fh-slide-from-bh",
+          "title": "FH Slide from BH",
+          "manifestUrl": "/manifests/felipe/22a-fh-slide-from-bh.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/22A%20Felipe%20FH%20Slide%20from%20BH%20JPG/22AFelipeFHSlideFromBHC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 122,
+          "cameraCount": 24
+        },
+        {
+          "id": "23-fh-shove",
+          "title": "FH Shove",
+          "manifestUrl": "/manifests/felipe/23-fh-shove.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/23.%20Felipe%20FH%20Shove%20JPG/23.FelipeFHShoveC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 119,
+          "cameraCount": 24
+        },
+        {
+          "id": "23a-fh-shove-from-bh",
+          "title": "FH Shove from BH",
+          "manifestUrl": "/manifests/felipe/23a-fh-shove-from-bh.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/23A%20Felipe%20FH%20Shove%20from%20BH%20JPG/23AFelipeFHShoveFromBHC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 126,
+          "cameraCount": 24
+        },
+        {
+          "id": "24-fh-lift",
+          "title": "FH Lift",
+          "manifestUrl": "/manifests/felipe/24-fh-lift.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/24.%20Felipe%20FH%20Lift%20JPG/24.FelipeFHLiftC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 130,
+          "cameraCount": 24
+        },
+        {
+          "id": "25-bh-loop-off-block",
+          "title": "BH Loop Off Block",
+          "manifestUrl": "/manifests/felipe/25-bh-loop-off-block.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/25%20Felipe%20BH%20Loop%20Off%20Block%20JPG/25FelipeBHLoopOffBlockC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 54,
+          "cameraCount": 24
+        },
+        {
+          "id": "26-bh-counter-loop",
+          "title": "BH Counter Loop",
+          "manifestUrl": "/manifests/felipe/26-bh-counter-loop.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/26%20Felipe%20BH%20Counter%20Loop%20JPG/26FelipeBHCounterLoopC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 64,
+          "cameraCount": 24
+        },
+        {
+          "id": "27-bh-curve-off-ts",
+          "title": "BH Curve Off TS",
+          "manifestUrl": "/manifests/felipe/27-bh-curve-off-ts.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/27%20Felipe%20BH%20Curve%20Off%20TS%20JPG/27FelipeBHCurveOffTSC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 108,
+          "cameraCount": 24
+        },
+        {
+          "id": "28-bh-in-out-off-ts",
+          "title": "BH In-Out Off TS",
+          "manifestUrl": "/manifests/felipe/28-bh-in-out-off-ts.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/28%20Felipe%20BH%20In-Out%20Off%20TS%20JPG/28FelipeBHInOutOffTSC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 83,
+          "cameraCount": 24
+        },
+        {
+          "id": "29-bh-loop-off-push",
+          "title": "BH Loop Off Push",
+          "manifestUrl": "/manifests/felipe/29-bh-loop-off-push.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/29%20Felipe%20BH%20Loop%20Off%20Push%20JPG/29FelipeBHLoopOffPushC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 81,
+          "cameraCount": 24
+        },
+        {
+          "id": "30-bh-loop-off-chop",
+          "title": "BH Loop Off Chop",
+          "manifestUrl": "/manifests/felipe/30-bh-loop-off-chop.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/30%20Felipe%20BH%20Loop%20Off%20Chop%20JPG/30FelipeBHLoopOffChopC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 88,
+          "cameraCount": 24
+        },
+        {
+          "id": "31-bh-high-arc",
+          "title": "BH High Arc",
+          "manifestUrl": "/manifests/felipe/31-bh-high-arc.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/31%20Felipe%20BH%20High%20Arc%20JPG/31FelipeBHHighArcC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 86,
+          "cameraCount": 24
+        },
+        {
+          "id": "32-bh-drive-off-us",
+          "title": "BH Drive Off US",
+          "manifestUrl": "/manifests/felipe/32-bh-drive-off-us.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/32%20Felipe%20BH%20Drive%20Off%20US%20JPG/32FelipeBHDriveoffUSC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 88,
+          "cameraCount": 24
+        },
+        {
+          "id": "33-bh-in-out-off-us",
+          "title": "BH In-Out Off US",
+          "manifestUrl": "/manifests/felipe/33-bh-in-out-off-us.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/33%20Felipe%20BH%20In-Out%20Off%20US%20JPG/33FelipeBHInOutOffUSC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 80,
+          "cameraCount": 24
+        },
+        {
+          "id": "34-bh-curve-off-us",
+          "title": "BH Curve Off US",
+          "manifestUrl": "/manifests/felipe/34-bh-curve-off-us.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/34%20Felipe%20BH%20Curve%20Off%20US%20JPG/34FelipeBHCurveOffUSC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 84,
+          "cameraCount": 24
+        },
+        {
+          "id": "35-bh-counter",
+          "title": "BH Counter",
+          "manifestUrl": "/manifests/felipe/35-bh-counter.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/35%20Felipe%20BH%20Counter%20JPG/35FelipeBHCounterC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 54,
+          "cameraCount": 24
+        },
+        {
+          "id": "36-bh-smash",
+          "title": "BH Smash",
+          "manifestUrl": "/manifests/felipe/36-bh-smash.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/36%20Felipe%20BH%20Smash%20JPG/36FelipeBHSmashC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 80,
+          "cameraCount": 24
+        },
+        {
+          "id": "36a-bh-smash-high-ball",
+          "title": "BH Smash High Ball",
+          "manifestUrl": "/manifests/felipe/36a-bh-smash-high-ball.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/36a%20Felipe%20BH%20Smash%20High%20Ball%20JPG/36FelipeBHSmashHighBallC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 95,
+          "cameraCount": 24
+        },
+        {
+          "id": "37-bh-passive-block",
+          "title": "BH Passive Block",
+          "manifestUrl": "/manifests/felipe/37-bh-passive-block.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/37%20Felipe%20BH%20Passive%20Block%20JPG/37FelipeBHPassiveBlockC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 68,
+          "cameraCount": 24
+        },
+        {
+          "id": "38-bh-active-block",
+          "title": "BH Active Block",
+          "manifestUrl": "/manifests/felipe/38-bh-active-block.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/38%20Felipe%20BH%20Active%20Block%20JPG/38FelipeBHActveBlockC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 58,
+          "cameraCount": 24
+        },
+        {
+          "id": "39-bh-chop-block",
+          "title": "BH Chop Block",
+          "manifestUrl": "/manifests/felipe/39-bh-chop-block.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/39%20Felipe%20BH%20Chop%20Block%20JPG/39FelipeChopBlockC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 90,
+          "cameraCount": 24
+        },
+        {
+          "id": "40-bh-chop",
+          "title": "BH Chop",
+          "manifestUrl": "/manifests/felipe/40-bh-chop.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/40%20Felipe%20BH%20Chop%20JPG/40FelipeBHChopC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 99,
+          "cameraCount": 24
+        },
+        {
+          "id": "41-bh-fish",
+          "title": "BH Fish",
+          "manifestUrl": "/manifests/felipe/41-bh-fish.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/41%20Felipe%20BH%20Fish%20JPG/41FelipeBHFishC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 64,
+          "cameraCount": 24
+        },
+        {
+          "id": "42-bh-lob",
+          "title": "BH Lob",
+          "manifestUrl": "/manifests/felipe/42-bh-lob.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/42%20Felipe%20BH%20Lob%20JPG/42FelipeBHLobC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 90,
+          "cameraCount": 24
+        },
+        {
+          "id": "43-bh-push",
+          "title": "BH Push",
+          "manifestUrl": "/manifests/felipe/43-bh-push.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/43%20Felipe%20BH%20Push%20JPG/43FelipeBHPushC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 140,
+          "cameraCount": 24
+        },
+        {
+          "id": "44-bh-drop-shot",
+          "title": "BH Drop Shot",
+          "manifestUrl": "/manifests/felipe/44-bh-drop-shot.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/44%20Felipe%20BH%20Drop%20Shot%20JPG/44FelipeBHDropShotC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 138,
+          "cameraCount": 24
+        },
+        {
+          "id": "45-bh-flip",
+          "title": "BH Flip",
+          "manifestUrl": "/manifests/felipe/45-bh-flip.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/45%20Felipe%20BH%20Flip%20JPG/45FelipeBHFlipC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 117,
+          "cameraCount": 24
+        },
+        {
+          "id": "46-bh-slide",
+          "title": "BH Slide",
+          "manifestUrl": "/manifests/felipe/46-bh-slide.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/46%20Felipe%20BH%20Slide%20JPG/46FelipeBHSlideC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 116,
+          "cameraCount": 24
+        },
+        {
+          "id": "46a-bh-slide",
+          "title": "BH Slide",
+          "manifestUrl": "/manifests/felipe/46a-bh-slide.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/46A%20Felipe%20BH%20Slide%20JPG/46AFelipeBHSlideC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 124,
+          "cameraCount": 24
+        },
+        {
+          "id": "47-bh-shove",
+          "title": "BH Shove",
+          "manifestUrl": "/manifests/felipe/47-bh-shove.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/47%20Felipe%20BH%20Shove%20JPG/47FelipeBHShoveC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 132,
+          "cameraCount": 24
+        },
+        {
+          "id": "47a-bh-shove",
+          "title": "BH Shove",
+          "manifestUrl": "/manifests/felipe/47a-bh-shove.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/47A%20Felipe%20BH%20Shove%20JPG/47AFelipeBHShoveC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 142,
+          "cameraCount": 24
+        },
+        {
+          "id": "48-bh-lift",
+          "title": "BH Lift",
+          "manifestUrl": "/manifests/felipe/48-bh-lift.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/48%20Felipe%20BH%20Lift%20JPG/48FelipeBHLiftC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 138,
+          "cameraCount": 24
+        },
+        {
+          "id": "49-bh-banana",
+          "title": "BH Banana",
+          "manifestUrl": "/manifests/felipe/49-bh-banana.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/49.%20Felipe%20BH%20Banana%20JPG/49.FelipeBHBananaC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 157,
+          "cameraCount": 24
+        },
+        {
+          "id": "50-bh-strawberry",
+          "title": "BH Strawberry",
+          "manifestUrl": "/manifests/felipe/50-bh-strawberry.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/50.%20Felipe%20BH%20Strawberry%20JPG/50.FelipeBHStrawberryC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 133,
+          "cameraCount": 23
+        },
+        {
+          "id": "51-fh-us-serve",
+          "title": "FH US Serve",
+          "manifestUrl": "/manifests/felipe/51-fh-us-serve.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/51%20Felipe%20FH%20US%20Serve%20JPG/51FelipeFHUSServeC01_00216000.jpg",
+          "category": "serve",
+          "frameCount": 121,
+          "cameraCount": 24
+        },
+        {
+          "id": "52-bh-us-serve",
+          "title": "BH US Serve",
+          "manifestUrl": "/manifests/felipe/52-bh-us-serve.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/52%20Felipe%20BH%20US%20Serve%20JPG/52FelipeBHUSServeC01_00216000.jpg",
+          "category": "serve",
+          "frameCount": 111,
+          "cameraCount": 24
+        },
+        {
+          "id": "57-fh-ts-serve",
+          "title": "FH TS Serve",
+          "manifestUrl": "/manifests/felipe/57-fh-ts-serve.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/57%20Felipe%20FH%20TS%20Serve/57FelipeFHTSServeC01_00216000.jpg",
+          "category": "serve",
+          "frameCount": 119,
+          "cameraCount": 24
+        },
+        {
+          "id": "58-bh-ts-serve",
+          "title": "BH TS Serve",
+          "manifestUrl": "/manifests/felipe/58-bh-ts-serve.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/58%20Felipe%20BH%20TS%20Serve%20JPG/58FelipeBHTSServeC01_00216000.jpg",
+          "category": "serve",
+          "frameCount": 115,
+          "cameraCount": 24
+        },
+        {
+          "id": "59-fh-tomahawk",
+          "title": "FH Tomahawk",
+          "manifestUrl": "/manifests/felipe/59-fh-tomahawk.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/59%20Felipe%20FH%20Tomahawk%20JPG/59FelipeFHTomahawkC01_00216000.jpg",
+          "category": "serve",
+          "frameCount": 92,
+          "cameraCount": 24
+        },
+        {
+          "id": "59b-bh-tomahawk",
+          "title": "BH Tomahawk",
+          "manifestUrl": "/manifests/felipe/59b-bh-tomahawk.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/59b%20Felipe%20BH%20Tomahawk%20JPG/59bFelipeBHTomahawkC01_00216000.jpg",
+          "category": "serve",
+          "frameCount": 90,
+          "cameraCount": 24
+        },
+        {
+          "id": "60-ready-position",
+          "title": "Ready Position",
+          "manifestUrl": "/manifests/felipe/60-ready-position.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/60%20Felipe%20Ready%20Position%20JPG/60FelipeReadyPositionC01_00216000.jpg",
+          "category": "footwork",
+          "frameCount": 101,
+          "cameraCount": 24
+        },
+        {
+          "id": "61-one-step",
+          "title": "One Step",
+          "manifestUrl": "/manifests/felipe/61-one-step.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/61%20Felipe%20One%20Step%20JPG/61FelipeOneStepC01_00216000.jpg",
+          "category": "footwork",
+          "frameCount": 128,
+          "cameraCount": 24
+        },
+        {
+          "id": "62-turn",
+          "title": "Turn",
+          "manifestUrl": "/manifests/felipe/62-turn.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/62%20Felipe%20Turn%20JPG/62FelipeTurnC01_00216000.jpg",
+          "category": "footwork",
+          "frameCount": 140,
+          "cameraCount": 24
+        },
+        {
+          "id": "63-recover-from-serve",
+          "title": "Recover From Serve",
+          "manifestUrl": "/manifests/felipe/63-recover-from-serve.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/63%20Felipe%20Recover%20From%20Serve%20JPG/63FelipeRecoverFromServeC01_00216000.jpg",
+          "category": "footwork",
+          "frameCount": 141,
+          "cameraCount": 24
+        },
+        {
+          "id": "64-cross-step",
+          "title": "Cross Step",
+          "manifestUrl": "/manifests/felipe/64-cross-step.json",
+          "previewUrl": "/local-assets/Felipe%20JPG/64%20Felipe%20Cross%20Step%20JPG/64FelipeCrossStepC01_00216000.jpg",
+          "category": "footwork",
+          "frameCount": 72,
+          "cameraCount": 24
+        }
+      ]
+    },
+    {
+      "id": "lupi",
+      "name": "Lupi",
+      "techniques": [
+        {
+          "id": "01-fh-loop-off-block",
+          "title": "FH Loop Off Block",
+          "manifestUrl": "/manifests/lupi/01-fh-loop-off-block.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/01%20Lupi%20FH%20Loop%20Off%20Block%20JPG/01LupiFHLoopOffBlockC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 65,
+          "cameraCount": 24
+        },
+        {
+          "id": "02-fh-counter-loop",
+          "title": "FH Counter Loop",
+          "manifestUrl": "/manifests/lupi/02-fh-counter-loop.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/02%20Lupi%20FH%20Counter%20Loop%20JPG/02LupiFHCounterLoopC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 66,
+          "cameraCount": 24
+        },
+        {
+          "id": "03-fh-curve-off-ts",
+          "title": "FH Curve Off TS",
+          "manifestUrl": "/manifests/lupi/03-fh-curve-off-ts.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/03%20Lupi%20FH%20Curve%20Off%20TS%20JPG/03LupiFHCurveOffTSC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 77,
+          "cameraCount": 24
+        },
+        {
+          "id": "04-fh-in-out-off-ts",
+          "title": "FH In-Out Off TS",
+          "manifestUrl": "/manifests/lupi/04-fh-in-out-off-ts.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/04%20Lupi%20FH%20In-Out%20Off%20TS%20JPG/04LupiFHInOutOffTSC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 99,
+          "cameraCount": 24
+        },
+        {
+          "id": "05-fh-loop-off-push",
+          "title": "FH Loop Off Push",
+          "manifestUrl": "/manifests/lupi/05-fh-loop-off-push.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/05%20Lupi%20FH%20Loop%20Off%20Push%20JPG/05LupiFHLoopOffPushC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 86,
+          "cameraCount": 24
+        },
+        {
+          "id": "06-fh-loop-off-chop",
+          "title": "FH Loop Off Chop",
+          "manifestUrl": "/manifests/lupi/06-fh-loop-off-chop.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/06%20Lupi%20FH%20Loop%20Off%20Chop%20JPG/06LupiFHLoopOffChopC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 101,
+          "cameraCount": 24
+        },
+        {
+          "id": "07-fh-high-arc",
+          "title": "FH High Arc",
+          "manifestUrl": "/manifests/lupi/07-fh-high-arc.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/07%20Lupi%20FH%20High%20Arc%20JPG/07LupiFHHighArcC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 99,
+          "cameraCount": 24
+        },
+        {
+          "id": "08-fh-drive-off-us",
+          "title": "FH Drive Off US",
+          "manifestUrl": "/manifests/lupi/08-fh-drive-off-us.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/08%20Lupi%20FH%20Drive%20Off%20US/08LupiFHDriveOffUSC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 94,
+          "cameraCount": 24
+        },
+        {
+          "id": "09-fh-in-out-off-us",
+          "title": "FH In-Out Off US",
+          "manifestUrl": "/manifests/lupi/09-fh-in-out-off-us.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/09%20Lupi%20FH%20In-Out%20Off%20US%20JPG/09LupiFHInOutOffUSC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 125,
+          "cameraCount": 24
+        },
+        {
+          "id": "10-fh-curve-off-us",
+          "title": "FH Curve Off US",
+          "manifestUrl": "/manifests/lupi/10-fh-curve-off-us.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/10%20Lupi%20FH%20Curve%20Off%20US%20JPG/10LupiFHCurveOffUSC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 83,
+          "cameraCount": 24
+        },
+        {
+          "id": "11-ball-in-play",
+          "title": "Ball In Play",
+          "manifestUrl": "/manifests/lupi/11-ball-in-play.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/11%20Lupi%20Ball%20In%20Play%20JPG/11LupiBallInPlayC01_00216000.jpg",
+          "category": "fundamentals",
+          "frameCount": 80,
+          "cameraCount": 24
+        },
+        {
+          "id": "12-fh-counter",
+          "title": "FH Counter",
+          "manifestUrl": "/manifests/lupi/12-fh-counter.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/12%20Lupi%20FH%20Counter%20JPG/12LupiFHCounterC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 57,
+          "cameraCount": 24
+        },
+        {
+          "id": "13-fh-smash",
+          "title": "FH Smash",
+          "manifestUrl": "/manifests/lupi/13-fh-smash.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/13%20Lupi%20FH%20Smash%20JPG/13LupiFHSmashC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 92,
+          "cameraCount": 24
+        },
+        {
+          "id": "13a-fh-lob-smash",
+          "title": "FH Lob Smash",
+          "manifestUrl": "/manifests/lupi/13a-fh-lob-smash.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/13a%20Lupi%20FH%20Lob%20Smash%20JPG/13aLupiFHLobSmashC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 113,
+          "cameraCount": 24
+        },
+        {
+          "id": "14-fh-passive-block",
+          "title": "FH Passive Block",
+          "manifestUrl": "/manifests/lupi/14-fh-passive-block.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/14%20Lupi%20FH%20Passive%20Block%20JPG/14LupiFHPassiveBlockC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 60,
+          "cameraCount": 24
+        },
+        {
+          "id": "15-fh-active-block",
+          "title": "FH Active Block",
+          "manifestUrl": "/manifests/lupi/15-fh-active-block.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/15%20Lupi%20FH%20Active%20Block%20JPG/15LupiFHActiveBlockC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 57,
+          "cameraCount": 24
+        },
+        {
+          "id": "16-fh-chop",
+          "title": "FH Chop",
+          "manifestUrl": "/manifests/lupi/16-fh-chop.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/16%20Lupi%20FH%20Chop%20JPG/16LupiFHchopC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 84,
+          "cameraCount": 24
+        },
+        {
+          "id": "17-fh-fish",
+          "title": "FH Fish",
+          "manifestUrl": "/manifests/lupi/17-fh-fish.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/17%20Lupi%20FH%20Fish%20JPG/17LupiFHFishC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 69,
+          "cameraCount": 24
+        },
+        {
+          "id": "18-fh-lob",
+          "title": "FH Lob",
+          "manifestUrl": "/manifests/lupi/18-fh-lob.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/18%20Lupi%20FH%20Lob%20JPG/18LupiFHLobC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 85,
+          "cameraCount": 24
+        },
+        {
+          "id": "19-fh-push",
+          "title": "FH Push",
+          "manifestUrl": "/manifests/lupi/19-fh-push.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/19%20Lupi%20FH%20Push%20JPG/19LupiFHPushC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 108,
+          "cameraCount": 24
+        },
+        {
+          "id": "20-fh-drop-shot",
+          "title": "FH Drop Shot",
+          "manifestUrl": "/manifests/lupi/20-fh-drop-shot.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/20%20Lupi%20FH%20Drop%20Shot%20JPG/20LupiFHDropShotC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 102,
+          "cameraCount": 24
+        },
+        {
+          "id": "21-fh-flip",
+          "title": "FH Flip",
+          "manifestUrl": "/manifests/lupi/21-fh-flip.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/21%20Lupi%20FH%20Flip%20JPG/21LupiFHFlipC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 122,
+          "cameraCount": 24
+        },
+        {
+          "id": "22-fh-slide",
+          "title": "FH Slide",
+          "manifestUrl": "/manifests/lupi/22-fh-slide.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/22%20Lupi%20FH%20Slide%20JPG/22LupiFHSlideC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 128,
+          "cameraCount": 24
+        },
+        {
+          "id": "22a-fh-slide",
+          "title": "FH Slide",
+          "manifestUrl": "/manifests/lupi/22a-fh-slide.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/22A%20Lupi%20FH%20Slide%20JPG/22ALupiFHSlideC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 125,
+          "cameraCount": 24
+        },
+        {
+          "id": "23-fh-shove",
+          "title": "FH Shove",
+          "manifestUrl": "/manifests/lupi/23-fh-shove.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/23%20Lupi%20FH%20Shove%20JPG/23LupiFHShoveC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 101,
+          "cameraCount": 24
+        },
+        {
+          "id": "24-fh-lift",
+          "title": "FH Lift",
+          "manifestUrl": "/manifests/lupi/24-fh-lift.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/24%20Lupi%20FH%20Lift%20JPG/24LupiFHLiftC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 129,
+          "cameraCount": 24
+        },
+        {
+          "id": "25-bh-loop-off-block",
+          "title": "BH Loop Off Block",
+          "manifestUrl": "/manifests/lupi/25-bh-loop-off-block.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/25%20Lupi%20BH%20Loop%20Off%20Block%20JPG/25LupiBHLoopOffBlockC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 49,
+          "cameraCount": 24
+        },
+        {
+          "id": "26-bh-counter-loop",
+          "title": "BH Counter Loop",
+          "manifestUrl": "/manifests/lupi/26-bh-counter-loop.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/26%20Lupi%20BH%20Counter%20Loop%20JPG/26LupiBHCounterLoopC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 79,
+          "cameraCount": 24
+        },
+        {
+          "id": "27-bh-curve-off-ts",
+          "title": "BH Curve Off TS",
+          "manifestUrl": "/manifests/lupi/27-bh-curve-off-ts.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/27%20Lupi%20BH%20Curve%20Off%20TS%20JPG/27LupiBHCurveOffTSC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 93,
+          "cameraCount": 24
+        },
+        {
+          "id": "28-bh-in-out-off-ts",
+          "title": "BH In-Out Off TS",
+          "manifestUrl": "/manifests/lupi/28-bh-in-out-off-ts.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/28%20Lupi%20BH%20In-Out%20Off%20TS%20JPG/28LupiBHInOutOffTSC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 91,
+          "cameraCount": 24
+        },
+        {
+          "id": "29-bh-loop-off-push",
+          "title": "BH Loop Off Push",
+          "manifestUrl": "/manifests/lupi/29-bh-loop-off-push.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/29%20Lupi%20BH%20Loop%20Off%20Push%20JPG/29LupiBHLoopOffPushC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 89,
+          "cameraCount": 24
+        },
+        {
+          "id": "30-bh-loop-off-chop",
+          "title": "BH Loop Off Chop",
+          "manifestUrl": "/manifests/lupi/30-bh-loop-off-chop.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/30%20Lupi%20BH%20Loop%20Off%20Chop%20JPG/30LupiBHLoopOffChopC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 105,
+          "cameraCount": 24
+        },
+        {
+          "id": "31-high-arc-off-us",
+          "title": "High Arc Off US",
+          "manifestUrl": "/manifests/lupi/31-high-arc-off-us.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/31%20Lupi%20High%20Arc%20Off%20US%20JPG/31LupiBHHighArcC01_00216000.jpg",
+          "category": "forehand",
+          "frameCount": 94,
+          "cameraCount": 24
+        },
+        {
+          "id": "32-bh-drive-off-us",
+          "title": "BH Drive Off US",
+          "manifestUrl": "/manifests/lupi/32-bh-drive-off-us.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/32%20Lupi%20BH%20Drive%20Off%20US%20JPG/32LupiBHDriveOffUSC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 90,
+          "cameraCount": 24
+        },
+        {
+          "id": "33-bh-in-out-off-us",
+          "title": "BH In Out Off US",
+          "manifestUrl": "/manifests/lupi/33-bh-in-out-off-us.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/33%20Lupi%20BH%20In%20Out%20Off%20US%20JPG/33LupiBHInOutoffUSC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 102,
+          "cameraCount": 24
+        },
+        {
+          "id": "34-bh-curve-off-us",
+          "title": "BH Curve Off US",
+          "manifestUrl": "/manifests/lupi/34-bh-curve-off-us.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/34%20Lupi%20BH%20Curve%20Off%20US%20JPG/34LupiBHCurveOffUSC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 92,
+          "cameraCount": 24
+        },
+        {
+          "id": "35-bh-counter",
+          "title": "BH Counter",
+          "manifestUrl": "/manifests/lupi/35-bh-counter.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/35%20Lupi%20BH%20Counter%20JPG/35LupiBHCounterC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 46,
+          "cameraCount": 24
+        },
+        {
+          "id": "36-bh-smash",
+          "title": "BH Smash",
+          "manifestUrl": "/manifests/lupi/36-bh-smash.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/36%20Lupi%20BH%20Smash%20JPG/36LupiBHSmashC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 99,
+          "cameraCount": 24
+        },
+        {
+          "id": "36a-bh-high-ball-smash",
+          "title": "BH High Ball Smash",
+          "manifestUrl": "/manifests/lupi/36a-bh-high-ball-smash.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/36a%20Lupi%20BH%20High%20Ball%20Smash%20JPG/36LupiBHHighBallSmashC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 102,
+          "cameraCount": 24
+        },
+        {
+          "id": "37-bh-passive-block",
+          "title": "BH Passive Block",
+          "manifestUrl": "/manifests/lupi/37-bh-passive-block.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/37%20Lupi%20BH%20Passive%20Block%20JPG/37LupiBHPassiveBlockC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 62,
+          "cameraCount": 24
+        },
+        {
+          "id": "38-bh-active-block",
+          "title": "BH Active Block",
+          "manifestUrl": "/manifests/lupi/38-bh-active-block.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/38%20Lupi%20BH%20Active%20Block%20JPG/38LupiBHActiveBlockC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 71,
+          "cameraCount": 24
+        },
+        {
+          "id": "39-bh-chop-block",
+          "title": "BH Chop Block",
+          "manifestUrl": "/manifests/lupi/39-bh-chop-block.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/39%20Lupi%20BH%20Chop%20Block%20JPG/39LupiBHChopBlockC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 82,
+          "cameraCount": 24
+        },
+        {
+          "id": "40-bh-chop",
+          "title": "BH Chop",
+          "manifestUrl": "/manifests/lupi/40-bh-chop.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/40%20Lupi%20BH%20Chop%20JPG/40LupiBHChopC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 86,
+          "cameraCount": 24
+        },
+        {
+          "id": "41-bh-fish",
+          "title": "BH Fish",
+          "manifestUrl": "/manifests/lupi/41-bh-fish.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/41%20Lupi%20BH%20Fish%20JPG/41LupiBHFishC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 82,
+          "cameraCount": 24
+        },
+        {
+          "id": "42-bh-lob",
+          "title": "BH Lob",
+          "manifestUrl": "/manifests/lupi/42-bh-lob.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/42%20Lupi%20BH%20Lob%20JPG/42LupiBHLobC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 82,
+          "cameraCount": 24
+        },
+        {
+          "id": "43-bh-push",
+          "title": "BH Push",
+          "manifestUrl": "/manifests/lupi/43-bh-push.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/43.%20Lupi%20BH%20Push%20JPG/43.LupiBHPushC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 91,
+          "cameraCount": 24
+        },
+        {
+          "id": "44-bh-drop-shot",
+          "title": "BH Drop Shot",
+          "manifestUrl": "/manifests/lupi/44-bh-drop-shot.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/44.%20Lupi%20BH%20Drop%20Shot%20JPG/44.LupiBHDropShotC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 101,
+          "cameraCount": 24
+        },
+        {
+          "id": "45-bh-flip",
+          "title": "BH Flip",
+          "manifestUrl": "/manifests/lupi/45-bh-flip.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/45%20Lupi%20BH%20Flip%20JPG/45LupiBHFlipC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 96,
+          "cameraCount": 24
+        },
+        {
+          "id": "46-bh-slide",
+          "title": "BH Slide",
+          "manifestUrl": "/manifests/lupi/46-bh-slide.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/46.%20Lupi%20BH%20Slide%20JPG/46.LupiBHSlideC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 130,
+          "cameraCount": 24
+        },
+        {
+          "id": "48-bh-lift",
+          "title": "BH Lift",
+          "manifestUrl": "/manifests/lupi/48-bh-lift.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/48.%20Lupi%20BH%20Lift%20JPG/48.LupiBHLiftC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 127,
+          "cameraCount": 24
+        },
+        {
+          "id": "49-bh-banana",
+          "title": "BH Banana",
+          "manifestUrl": "/manifests/lupi/49-bh-banana.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/49%20Lupi%20BH%20Banana%20JPG/49LupiBHBananaC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 145,
+          "cameraCount": 24
+        },
+        {
+          "id": "50-bh-strawberry",
+          "title": "BH Strawberry",
+          "manifestUrl": "/manifests/lupi/50-bh-strawberry.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/50%20Lupi%20BH%20Strawberry%20JPG/50LupiBHStrawberryC01_00216000.jpg",
+          "category": "backhand",
+          "frameCount": 138,
+          "cameraCount": 24
+        },
+        {
+          "id": "51-fh-us-serve",
+          "title": "FH US Serve",
+          "manifestUrl": "/manifests/lupi/51-fh-us-serve.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/51%20Lupi%20FH%20US%20Serve%20JPG/51LupiFHUSServeC01_00216000.jpg",
+          "category": "serve",
+          "frameCount": 138,
+          "cameraCount": 24
+        },
+        {
+          "id": "52-bh-us-serve",
+          "title": "BH US Serve",
+          "manifestUrl": "/manifests/lupi/52-bh-us-serve.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/52%20Lupi%20BH%20US%20Serve%20JPG/52LupiBHUSServeC01_00216000.jpg",
+          "category": "serve",
+          "frameCount": 114,
+          "cameraCount": 24
+        },
+        {
+          "id": "57-fh-ts-serve",
+          "title": "FH TS Serve",
+          "manifestUrl": "/manifests/lupi/57-fh-ts-serve.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/57%20Lupi%20FH%20TS%20Serve%20JPG/57LupiFHTSServeC01_00216000.jpg",
+          "category": "serve",
+          "frameCount": 126,
+          "cameraCount": 24
+        },
+        {
+          "id": "58-bh-ts-serve",
+          "title": "BH TS Serve",
+          "manifestUrl": "/manifests/lupi/58-bh-ts-serve.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/58%20Lupi%20BH%20TS%20Serve%20JPG/58LupiBHTSServeC01_00216000.jpg",
+          "category": "serve",
+          "frameCount": 106,
+          "cameraCount": 24
+        },
+        {
+          "id": "59a-bh-tomahawk",
+          "title": "BH Tomahawk",
+          "manifestUrl": "/manifests/lupi/59a-bh-tomahawk.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/59a%20Lupi%20BH%20Tomahawk%20JPG/59aLupiBHTomahawkC01_00216000.jpg",
+          "category": "serve",
+          "frameCount": 96,
+          "cameraCount": 24
+        },
+        {
+          "id": "59b-fh-tomahawk",
+          "title": "FH Tomahawk",
+          "manifestUrl": "/manifests/lupi/59b-fh-tomahawk.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/59b%20Lupi%20FH%20Tomahawk%20JPG/59bLupiFHTomahawkC01_00216000.jpg",
+          "category": "serve",
+          "frameCount": 100,
+          "cameraCount": 24
+        },
+        {
+          "id": "60-ready-position",
+          "title": "Ready Position",
+          "manifestUrl": "/manifests/lupi/60-ready-position.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/60%20Lupi%20Ready%20Position%20JPG/60LupiReadyPositionC01_00216000.jpg",
+          "category": "footwork",
+          "frameCount": 77,
+          "cameraCount": 24
+        },
+        {
+          "id": "61-one-step",
+          "title": "One Step",
+          "manifestUrl": "/manifests/lupi/61-one-step.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/61%20Lupi%20One%20Step%20JPG/61LupiOneStepC01_00216000.jpg",
+          "category": "footwork",
+          "frameCount": 128,
+          "cameraCount": 24
+        },
+        {
+          "id": "62-turn",
+          "title": "Turn",
+          "manifestUrl": "/manifests/lupi/62-turn.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/62%20Lupi%20Turn%20JPG/62LupiTurnC01_00216000.jpg",
+          "category": "footwork",
+          "frameCount": 133,
+          "cameraCount": 24
+        },
+        {
+          "id": "63-serve-recover",
+          "title": "Serve Recover",
+          "manifestUrl": "/manifests/lupi/63-serve-recover.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/63%20Lupi%20Serve%20Recover%20JPG/63LupiServeRecoverC01_00216000.jpg",
+          "category": "serve",
+          "frameCount": 145,
+          "cameraCount": 24
+        },
+        {
+          "id": "64-cross-step",
+          "title": "Cross Step",
+          "manifestUrl": "/manifests/lupi/64-cross-step.json",
+          "previewUrl": "/local-assets/Lupi%20JPG/64%20Lupi%20Cross%20Step%20JPG/64LupiXStepC01_00216000.jpg",
+          "category": "footwork",
+          "frameCount": 74,
           "cameraCount": 24
         }
       ]

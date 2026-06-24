@@ -6,9 +6,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 const projectRoot = path.resolve(__dirname);
-const bibaAssetsRoot =
-  process.env.BIBA_ASSETS_DIR ??
-  path.join(projectRoot, "assets/Biba JPG");
+const assetsRoot = path.join(projectRoot, "assets");
 
 function createLocalAssetMiddleware(
   urlPrefix: string,
@@ -79,7 +77,7 @@ function localDevServerPlugin(): Plugin {
       });
 
       server.middlewares.use(
-        createLocalAssetMiddleware("/local-assets/", bibaAssetsRoot),
+        createLocalAssetMiddleware("/local-assets/", assetsRoot),
       );
     },
   };

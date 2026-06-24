@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from "react";
 import { CatalogPage } from "./components/catalog/CatalogPage";
+import { PlayerLibraryPage } from "./components/catalog/PlayerLibraryPage";
 import { PlayerView } from "./components/PlayerView";
 import { useAppRoute } from "./hooks/useAppRoute";
 import { useCatalog } from "./hooks/useCatalog";
@@ -116,11 +117,9 @@ export default function App() {
 
   return (
     <div className="app-shell app-shell--catalog">
-      <CatalogPage
+      <PlayerLibraryPage
         catalog={catalog}
-        onSelectTechnique={(playerId, techniqueId) =>
-          navigate({ view: "technique", playerId, techniqueId })
-        }
+        onSelectPlayer={(playerId) => navigate({ view: "player", playerId })}
       />
     </div>
   );

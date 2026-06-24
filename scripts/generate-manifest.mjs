@@ -1,23 +1,25 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  PLAYERS,
+  playerAssetsPath,
+  playerAssetsRoot,
+} from "./players.config.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const projectRoot = path.resolve(__dirname, "..");
-const bibaRoot =
-  process.env.BIBA_ASSETS_DIR ??
-  path.join(projectRoot, "assets/Biba JPG");
 const publicDir = path.join(__dirname, "../public");
 const publicManifestsDir = path.join(publicDir, "manifests");
 const cdnStagingDir = path.join(__dirname, "../cdn-staging");
 
 const DEFAULT_FPS = 59;
-const PLAYER_ID = "biba";
 
 function parseArgs(argv) {
   const cdnMode = argv.includes("--cdn");
   const catalogOnly = argv.includes("--catalog-only");
-  const techniqueId = argv.find((arg) => !arg.startsWith("--")) ?? null;
+  const playerId = argv.find((arg) => arg.startsWith("--player="))?.slice(9) ?? null;
+  const techniqueId =
+    argv.find((arg) => !arg.startsWith("--")) ?? null;
   const configPath = path.join(__dirname, "../cdn.config.json");
   let cdnBaseUrl = process.env.CDN_BASE_URL ?? null;
 
@@ -32,9 +34,14 @@ function parseArgs(argv) {
     );
   }
 
+  if (playerId && !PLAYERS.some((player) => player.id === playerId)) {
+    throw new Error(`Unknown player: ${playerId}`);
+  }
+
   return {
     cdnMode,
     catalogOnly,
+    playerId,
     techniqueId,
     cdnBaseUrl: cdnBaseUrl?.replace(/\/+$/, "") ?? null,
   };
@@ -47,9 +54,9 @@ function slugify(value) {
     .replace(/^-+|-+$/g, "");
 }
 
-function parseFolderName(folderName) {
+function parseFolderName(folderName, player) {
   const withoutExt = folderName.replace(/\s+JPG$/i, "").trim();
-  const match = withoutExt.match(/^(\d+[a-zA-Z]?)\.?\s+Biba\s+(.+)$/i);
+  const match = withoutExt.match(player.folderPattern);
 
   if (!match) {
     return null;
@@ -59,7 +66,9 @@ function parseFolderName(folderName) {
   return {
     id: `${number.toLowerCase()}-${slugify(title)}`,
     title,
-    playerId: PLAYER_ID,
+    playerId: player.id,
+    playerName: player.name,
+    assetsDir: player.assetsDir,
     sourceFolder: folderName,
     sortKey: number.toLowerCase(),
     fps: DEFAULT_FPS,
@@ -70,27 +79,42 @@ function techniqueBasePath(technique) {
   return `players/${technique.playerId}/techniques/${technique.id}`;
 }
 
-function discoverTechniques() {
-  if (!fs.existsSync(bibaRoot)) {
-    throw new Error(`Biba assets folder not found: ${bibaRoot}`);
+function selectedPlayers(playerId) {
+  if (playerId) {
+    return PLAYERS.filter((player) => player.id === playerId);
   }
+  return PLAYERS;
+}
 
-  const folders = fs
-    .readdirSync(bibaRoot, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name)
-    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
-
+function discoverTechniques(playerFilter) {
   const techniques = [];
   const skipped = [];
 
-  for (const folderName of folders) {
-    const technique = parseFolderName(folderName);
-    if (!technique) {
-      skipped.push(folderName);
+  for (const player of selectedPlayers(playerFilter)) {
+    const playerRoot = playerAssetsRoot(player);
+    if (!fs.existsSync(playerRoot)) {
+      console.warn(`Skipping ${player.name}: assets folder not found (${playerRoot})`);
       continue;
     }
-    techniques.push(technique);
+
+    const folders = fs
+      .readdirSync(playerRoot, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name)
+      .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+
+    for (const folderName of folders) {
+      const technique = parseFolderName(folderName, player);
+      if (!technique) {
+        skipped.push(`${player.name}/${folderName}`);
+        continue;
+      }
+      techniques.push(technique);
+    }
+  }
+
+  if (techniques.length === 0) {
+    throw new Error("No techniques found. Check assets/ player folders.");
   }
 
   return { techniques, skipped };
@@ -122,15 +146,23 @@ function buildUrls(technique, mode) {
     };
   }
 
+  const assetsPath = playerAssetsPath(
+    { assetsDir: technique.assetsDir },
+    technique.sourceFolder,
+  );
+
   return {
-    baseUrl: `/local-assets/${encodeURIComponent(technique.sourceFolder)}`,
-    manifestUrl: `/manifests/${technique.id}.json`,
-    manifestRelativePath: `manifests/${technique.id}.json`,
+    baseUrl: `/local-assets/${assetsPath
+      .split("/")
+      .map((segment) => encodeURIComponent(segment))
+      .join("/")}`,
+    manifestUrl: `/manifests/${technique.playerId}/${technique.id}.json`,
+    manifestRelativePath: `manifests/${technique.playerId}/${technique.id}.json`,
   };
 }
 
 function generateManifest(technique, mode) {
-  const sourceDir = path.join(bibaRoot, technique.sourceFolder);
+  const sourceDir = path.join(playerAssetsRoot({ assetsDir: technique.assetsDir }), technique.sourceFolder);
   if (!fs.existsSync(sourceDir)) {
     throw new Error(`Source folder not found: ${sourceDir}`);
   }
@@ -195,6 +227,7 @@ function generateManifest(technique, mode) {
     },
     source: {
       folder: technique.sourceFolder,
+      playerAssetsDir: technique.assetsDir,
     },
     ...(warnings.length > 0 ? { warnings } : {}),
   };
@@ -256,6 +289,14 @@ function buildPreviewUrl(manifest) {
 function generateCatalog(manifestFiles) {
   const players = new Map();
 
+  for (const player of PLAYERS) {
+    players.set(player.id, {
+      id: player.id,
+      name: player.name,
+      techniques: [],
+    });
+  }
+
   for (const {
     technique,
     manifestUrl,
@@ -264,15 +305,12 @@ function generateCatalog(manifestFiles) {
     frameCount,
     cameraCount,
   } of manifestFiles) {
-    if (!players.has(technique.playerId)) {
-      players.set(technique.playerId, {
-        id: technique.playerId,
-        name: "Biba",
-        techniques: [],
-      });
+    const playerEntry = players.get(technique.playerId);
+    if (!playerEntry) {
+      continue;
     }
 
-    players.get(technique.playerId).techniques.push({
+    playerEntry.techniques.push({
       id: technique.id,
       title: technique.title,
       manifestUrl,
@@ -283,13 +321,43 @@ function generateCatalog(manifestFiles) {
     });
   }
 
-  for (const player of players.values()) {
+  const catalogPlayers = [...players.values()].filter(
+    (player) => player.techniques.length > 0,
+  );
+
+  for (const player of catalogPlayers) {
     player.techniques.sort((a, b) =>
       a.id.localeCompare(b.id, undefined, { numeric: true }),
     );
   }
 
-  return { players: [...players.values()] };
+  return { players: catalogPlayers };
+}
+
+function listPublicManifestFiles() {
+  if (!fs.existsSync(publicManifestsDir)) {
+    return [];
+  }
+
+  const files = [];
+
+  for (const entry of fs.readdirSync(publicManifestsDir, { withFileTypes: true })) {
+    if (entry.isDirectory()) {
+      const playerId = entry.name;
+      for (const manifestName of fs.readdirSync(path.join(publicManifestsDir, playerId))) {
+        if (manifestName.endsWith(".json")) {
+          files.push(path.join(playerId, manifestName));
+        }
+      }
+      continue;
+    }
+
+    if (entry.name.endsWith(".json")) {
+      files.push(entry.name);
+    }
+  }
+
+  return files.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
 }
 
 function buildCatalogEntryFromManifest(manifest, cdnBaseUrl) {
@@ -319,20 +387,17 @@ function buildCatalogEntryFromManifest(manifest, cdnBaseUrl) {
 }
 
 function generateCatalogFromPublicManifests(cdnBaseUrl) {
-  if (!fs.existsSync(publicManifestsDir)) {
+  const manifestPaths = listPublicManifestFiles();
+  if (manifestPaths.length === 0) {
     throw new Error("public/manifests not found. Run: npm run generate-manifest");
   }
 
-  const manifestFiles = fs
-    .readdirSync(publicManifestsDir)
-    .filter((name) => name.endsWith(".json"))
-    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
-    .map((name) => {
-      const manifest = JSON.parse(
-        fs.readFileSync(path.join(publicManifestsDir, name), "utf8"),
-      );
-      return buildCatalogEntryFromManifest(manifest, cdnBaseUrl);
-    });
+  const manifestFiles = manifestPaths.map((relativePath) => {
+    const manifest = JSON.parse(
+      fs.readFileSync(path.join(publicManifestsDir, relativePath), "utf8"),
+    );
+    return buildCatalogEntryFromManifest(manifest, cdnBaseUrl);
+  });
 
   return generateCatalog(manifestFiles);
 }
@@ -341,19 +406,21 @@ function writeCatalogFiles(catalog, mode) {
   const catalogPath = mode.cdnMode
     ? path.join(cdnStagingDir, "catalog.json")
     : path.join(publicDir, "catalog.json");
-  const playerCatalogPath = mode.cdnMode
-    ? path.join(cdnStagingDir, "players", PLAYER_ID, "catalog.json")
-    : null;
 
   fs.mkdirSync(path.dirname(catalogPath), { recursive: true });
   fs.writeFileSync(catalogPath, `${JSON.stringify(catalog, null, 2)}\n`);
 
-  if (playerCatalogPath) {
-    fs.mkdirSync(path.dirname(playerCatalogPath), { recursive: true });
-    fs.writeFileSync(
-      playerCatalogPath,
-      `${JSON.stringify(catalog.players[0], null, 2)}\n`,
-    );
+  if (mode.cdnMode) {
+    for (const player of catalog.players) {
+      const playerCatalogPath = path.join(
+        cdnStagingDir,
+        "players",
+        player.id,
+        "catalog.json",
+      );
+      fs.mkdirSync(path.dirname(playerCatalogPath), { recursive: true });
+      fs.writeFileSync(playerCatalogPath, `${JSON.stringify(player, null, 2)}\n`);
+    }
   }
 
   return catalogPath;
@@ -376,9 +443,10 @@ function writeManifestOutputs(manifest, technique, mode) {
     };
   }
 
-  fs.mkdirSync(publicManifestsDir, { recursive: true });
+  const playerManifestDir = path.join(publicManifestsDir, technique.playerId);
+  fs.mkdirSync(playerManifestDir, { recursive: true });
   fs.writeFileSync(
-    path.join(publicManifestsDir, `${technique.id}.json`),
+    path.join(playerManifestDir, `${technique.id}.json`),
     `${JSON.stringify(manifest, null, 2)}\n`,
   );
   return {
@@ -403,12 +471,15 @@ function main() {
     console.log("Generated CDN catalog only (no JPG staging).");
     console.log(`CDN base: ${mode.cdnBaseUrl}`);
     console.log(`Catalog: ${catalogPath}`);
-    console.log(`Techniques: ${catalog.players[0]?.techniques.length ?? 0}`);
+    console.log(`Players: ${catalog.players.length}`);
+    for (const player of catalog.players) {
+      console.log(`  - ${player.name}: ${player.techniques.length} techniques`);
+    }
     console.log("Next: npm run upload-r2:catalog");
     return;
   }
 
-  const { techniques, skipped } = discoverTechniques();
+  const { techniques, skipped } = discoverTechniques(mode.playerId);
   const manifestFiles = [];
   const failures = [];
 
@@ -420,11 +491,15 @@ function main() {
     throw new Error(`Technique not found: ${mode.techniqueId}`);
   }
 
-  if (mode.cdnMode && !mode.techniqueId) {
+  if (mode.cdnMode && !mode.techniqueId && !mode.playerId) {
     fs.rmSync(cdnStagingDir, { recursive: true, force: true });
     fs.mkdirSync(cdnStagingDir, { recursive: true });
   } else if (mode.cdnMode) {
     fs.mkdirSync(cdnStagingDir, { recursive: true });
+  }
+
+  if (!mode.cdnMode && !mode.techniqueId && !mode.playerId) {
+    fs.rmSync(publicManifestsDir, { recursive: true, force: true });
   }
 
   for (const technique of selectedTechniques) {
@@ -439,14 +514,16 @@ function main() {
         cameraCount: manifest.cameras.length,
       });
       console.log(
-        `✓ ${technique.id} (${manifest.frameCount} frames, ${manifest.cameras.length} cameras)`,
+        `✓ ${technique.playerId}/${technique.id} (${manifest.frameCount} frames, ${manifest.cameras.length} cameras)`,
       );
     } catch (error) {
       failures.push({
-        folder: technique.sourceFolder,
+        folder: `${technique.playerId}/${technique.sourceFolder}`,
         error: error instanceof Error ? error.message : String(error),
       });
-      console.error(`✗ ${technique.sourceFolder}: ${failures.at(-1).error}`);
+      console.error(
+        `✗ ${technique.playerId}/${technique.sourceFolder}: ${failures.at(-1).error}`,
+      );
     }
   }
 
@@ -468,12 +545,18 @@ function main() {
     }
   } else {
     console.log(`Generated ${manifestFiles.length} local manifest(s) and catalog.json`);
+    for (const player of catalog.players) {
+      console.log(`  - ${player.name}: ${player.techniques.length} techniques`);
+    }
   }
 
   if (skipped.length > 0) {
-    console.log(`Skipped ${skipped.length} non-Biba folder(s):`);
-    for (const folder of skipped) {
+    console.log(`Skipped ${skipped.length} unrecognized folder(s):`);
+    for (const folder of skipped.slice(0, 10)) {
       console.log(`  - ${folder}`);
+    }
+    if (skipped.length > 10) {
+      console.log(`  ... and ${skipped.length - 10} more`);
     }
   }
 

@@ -2,12 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { playerAssetsRoot } from "./players.config.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, "..");
-const bibaRoot =
-  process.env.BIBA_ASSETS_DIR ??
-  path.join(projectRoot, "assets/Biba JPG");
 const cdnStagingDir = path.join(__dirname, "../cdn-staging");
 const configPath = path.join(__dirname, "../cdn.config.json");
 
@@ -91,22 +89,63 @@ async function uploadFile(client, bucket, key, filePath, dryRun) {
 }
 
 function discoverTechniqueDirs(techniqueId) {
-  const techniquesRoot = path.join(cdnStagingDir, "players/biba/techniques");
-  if (!fs.existsSync(techniquesRoot)) {
+  const playersRoot = path.join(cdnStagingDir, "players");
+  if (!fs.existsSync(playersRoot)) {
     throw new Error("cdn-staging is empty. Run: npm run generate-manifest:cdn");
   }
 
-  const dirs = fs
-    .readdirSync(techniquesRoot, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name)
-    .filter((id) => (techniqueId ? id === techniqueId : true));
+  const dirs = [];
+  for (const playerEntry of fs.readdirSync(playersRoot, { withFileTypes: true })) {
+    if (!playerEntry.isDirectory()) {
+      continue;
+    }
+
+    const techniquesRoot = path.join(playersRoot, playerEntry.name, "techniques");
+    if (!fs.existsSync(techniquesRoot)) {
+      continue;
+    }
+
+    for (const techniqueEntry of fs.readdirSync(techniquesRoot, { withFileTypes: true })) {
+      if (!techniqueEntry.isDirectory()) {
+        continue;
+      }
+      if (techniqueId && techniqueEntry.name !== techniqueId) {
+        continue;
+      }
+      dirs.push(path.join(techniquesRoot, techniqueEntry.name));
+    }
+  }
 
   if (techniqueId && dirs.length === 0) {
     throw new Error(`Technique not found in cdn-staging: ${techniqueId}`);
   }
 
-  return dirs.map((id) => path.join(techniquesRoot, id));
+  return dirs;
+}
+
+function sourceDirForManifest(manifest) {
+  const assetsDir = manifest.source?.playerAssetsDir ?? "Biba JPG";
+  return path.join(playerAssetsRoot({ assetsDir }), manifest.source.folder);
+}
+
+function r2PrefixForTechniqueDir(techniqueDir) {
+  return path.relative(cdnStagingDir, techniqueDir).split(path.sep).join("/");
+}
+
+function discoverCatalogKeys() {
+  const keys = ["catalog.json"];
+  const playersRoot = path.join(cdnStagingDir, "players");
+  if (!fs.existsSync(playersRoot)) {
+    return keys;
+  }
+
+  for (const playerEntry of fs.readdirSync(playersRoot, { withFileTypes: true })) {
+    if (playerEntry.isDirectory()) {
+      keys.push(`players/${playerEntry.name}/catalog.json`);
+    }
+  }
+
+  return keys;
 }
 
 async function main() {
@@ -126,7 +165,7 @@ async function main() {
       `${dryRun ? "Dry run" : "Uploading"} catalog only to ${config.r2.bucket}`,
     );
 
-    for (const catalogKey of ["catalog.json", "players/biba/catalog.json"]) {
+    for (const catalogKey of discoverCatalogKeys()) {
       const localCatalogPath = path.join(cdnStagingDir, catalogKey);
       if (!fs.existsSync(localCatalogPath)) {
         throw new Error(
@@ -158,13 +197,13 @@ async function main() {
     const techniqueIdFromPath = path.basename(techniqueDir);
     const manifestPath = path.join(techniqueDir, "manifest.json");
     const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
-    const sourceDir = path.join(bibaRoot, manifest.source.folder);
+    const sourceDir = sourceDirForManifest(manifest);
 
     if (!fs.existsSync(sourceDir)) {
       throw new Error(`Source folder not found: ${sourceDir}`);
     }
 
-    const r2Prefix = `players/biba/techniques/${techniqueIdFromPath}`;
+    const r2Prefix = r2PrefixForTechniqueDir(techniqueDir);
     await uploadFile(
       client,
       config.r2.bucket,
@@ -193,7 +232,7 @@ async function main() {
   }
 
   if (!techniqueId) {
-    for (const catalogKey of ["catalog.json", "players/biba/catalog.json"]) {
+    for (const catalogKey of discoverCatalogKeys()) {
       const localCatalogPath = path.join(cdnStagingDir, catalogKey);
       if (fs.existsSync(localCatalogPath)) {
         await uploadFile(
