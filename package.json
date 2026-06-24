@@ -9,8 +9,11 @@
     "preview": "vite preview",
     "generate-manifest": "node scripts/generate-manifest.mjs",
     "generate-manifest:cdn": "node scripts/generate-manifest.mjs --cdn",
+    "generate-catalog:cdn": "node scripts/generate-manifest.mjs --cdn --catalog-only",
     "upload-r2": "node scripts/upload-to-r2.mjs",
-    "upload-r2:dry-run": "node scripts/upload-to-r2.mjs --dry-run"
+    "upload-r2:catalog": "node scripts/upload-to-r2.mjs --catalog-only",
+    "upload-r2:dry-run": "node scripts/upload-to-r2.mjs --dry-run",
+    "upload-r2:catalog:dry-run": "node scripts/upload-to-r2.mjs --catalog-only --dry-run"
   },
   "dependencies": {
     "react": "^18.3.1",

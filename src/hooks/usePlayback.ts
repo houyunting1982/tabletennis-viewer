@@ -16,6 +16,11 @@ export function usePlayback() {
     cameraCount: 0,
     bufferProgress: 0,
     bufferTotal: 0,
+    cameraBufferProgress: 0,
+    cameraBufferTotal: 0,
+    cameraProgress: [],
+    canPlay: false,
+    canSwitchCamera: false,
     playbackRate: 1,
     error: null,
   }));
@@ -36,6 +41,10 @@ export function usePlayback() {
   );
   const setCameraIndex = useCallback(
     (index: number) => engine.setCameraIndex(index),
+    [engine],
+  );
+  const stepCamera = useCallback(
+    (delta: number) => engine.stepCamera(delta),
     [engine],
   );
   const setFrameIndex = useCallback(
@@ -59,6 +68,7 @@ export function usePlayback() {
     currentFrame,
     loadManifest,
     setCameraIndex,
+    stepCamera,
     setFrameIndex,
     stepFrame,
     play,

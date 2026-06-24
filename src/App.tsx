@@ -1,137 +1,126 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
+import { CatalogPage } from "./components/catalog/CatalogPage";
 import { PlayerView } from "./components/PlayerView";
+import { useAppRoute } from "./hooks/useAppRoute";
 import { useCatalog } from "./hooks/useCatalog";
+import { findPlayer, findTechnique } from "./lib/catalog/utils";
+import { routeTitle } from "./lib/routing";
 
 export default function App() {
   const { catalog, loading, error } = useCatalog();
-  const [selectedPlayerId, setSelectedPlayerId] = useState<string | null>(null);
-  const [selectedTechniqueId, setSelectedTechniqueId] = useState<string | null>(
-    null,
-  );
-  const [filter, setFilter] = useState("");
+  const { route, navigate } = useAppRoute();
 
-  const selectedPlayer = useMemo(
-    () => catalog?.players.find((player) => player.id === selectedPlayerId) ?? null,
-    [catalog, selectedPlayerId],
-  );
-
-  const selectedTechnique = useMemo(
-    () =>
-      selectedPlayer?.techniques.find(
-        (technique) => technique.id === selectedTechniqueId,
-      ) ?? null,
-    [selectedPlayer, selectedTechniqueId],
-  );
-
-  const filteredCatalog = useMemo(() => {
-    if (!catalog) {
+  const selection = useMemo(() => {
+    if (!catalog || route.view !== "technique") {
       return null;
     }
 
-    const query = filter.trim().toLowerCase();
-    if (!query) {
-      return catalog;
+    return findTechnique(catalog, route.playerId, route.techniqueId);
+  }, [catalog, route]);
+
+  const playerPage = useMemo(() => {
+    if (!catalog || route.view !== "player") {
+      return null;
     }
 
-    return {
-      players: catalog.players.map((player) => ({
-        ...player,
-        techniques: player.techniques.filter((technique) =>
-          `${technique.title} ${technique.id}`.toLowerCase().includes(query),
-        ),
-      })),
-    };
-  }, [catalog, filter]);
+    return findPlayer(catalog, route.playerId);
+  }, [catalog, route]);
+
+  useEffect(() => {
+    if (route.view === "technique" && selection) {
+      document.title = routeTitle(route, {
+        playerName: selection.player.name,
+        techniqueTitle: selection.technique.title,
+      });
+      return;
+    }
+
+    if (route.view === "player" && playerPage) {
+      document.title = routeTitle(route, { playerName: playerPage.name });
+      return;
+    }
+
+    document.title = routeTitle({ view: "home" });
+  }, [route, selection, playerPage]);
+
+  useEffect(() => {
+    if (!catalog || route.view !== "technique") {
+      return;
+    }
+
+    if (!selection) {
+      navigate({ view: "player", playerId: route.playerId }, { replace: true });
+    }
+  }, [catalog, navigate, route, selection]);
+
+  useEffect(() => {
+    if (!catalog || route.view !== "player") {
+      return;
+    }
+
+    if (!playerPage) {
+      navigate({ view: "home" }, { replace: true });
+    }
+  }, [catalog, navigate, playerPage, route]);
 
   if (loading) {
-    return <div className="app-shell loading-state">Loading catalog...</div>;
-  }
-
-  if (error || !catalog || !filteredCatalog) {
     return (
-      <div className="app-shell loading-state">
-        {error ?? "Catalog is unavailable"}
-      </div>
-    );
-  }
-
-  if (!selectedPlayerId || !selectedTechnique || !selectedPlayer) {
-    const totalTechniques = catalog.players.reduce(
-      (count, player) => count + player.techniques.length,
-      0,
-    );
-
-    return (
-      <div className="app-shell catalog-layout">
-        <header className="catalog-header">
-          <div>
-            <p className="eyebrow">Table Tennis 4D Viewer</p>
-            <h1>Select a technique</h1>
-            <p>
-              Biba local demo · {totalTechniques} techniques · manifest + on-disk
-              assets
-            </p>
-          </div>
-        </header>
-
-        <label className="catalog-search">
-          <span>Search</span>
-          <input
-            type="search"
-            value={filter}
-            onChange={(event) => setFilter(event.target.value)}
-            placeholder="FH Loop, Tomahawk, Serve..."
-          />
-        </label>
-
-        <div className="catalog-grid">
-          {filteredCatalog.players.map((player) => (
-            <section key={player.id} className="player-card">
-              <h2>
-                {player.name}
-                <span className="technique-count">{player.techniques.length}</span>
-              </h2>
-              {player.techniques.length === 0 ? (
-                <p className="empty-state">No techniques match your search.</p>
-              ) : (
-                <ul>
-                  {player.techniques.map((technique) => (
-                    <li key={technique.id}>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setSelectedPlayerId(player.id);
-                          setSelectedTechniqueId(technique.id);
-                        }}
-                      >
-                        <span>{technique.title}</span>
-                        <span className="technique-id">{technique.id}</span>
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </section>
-          ))}
+      <div className="app-shell catalog-loading">
+        <div className="catalog-loading-card">
+          <div className="catalog-loading-spinner" />
+          <p>Loading technique library...</p>
         </div>
       </div>
     );
   }
 
+  if (error || !catalog) {
+    return (
+      <div className="app-shell catalog-loading">
+        <div className="catalog-loading-card is-error">
+          <p>{error ?? "Catalog is unavailable"}</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (route.view === "technique" && selection) {
+    return (
+      <div className="app-shell app-shell--player">
+        <PlayerView
+          technique={selection.technique}
+          playerName={selection.player.name}
+          onNavigateHome={() => navigate({ view: "home" })}
+          onNavigatePlayer={() =>
+            navigate({ view: "player", playerId: selection.player.id })
+          }
+        />
+      </div>
+    );
+  }
+
+  if (route.view === "player" && playerPage) {
+    return (
+      <div className="app-shell app-shell--catalog">
+        <CatalogPage
+          catalog={catalog}
+          playerId={playerPage.id}
+          onNavigateHome={() => navigate({ view: "home" })}
+          onSelectTechnique={(playerId, techniqueId) =>
+            navigate({ view: "technique", playerId, techniqueId })
+          }
+        />
+      </div>
+    );
+  }
+
   return (
-    <div className="app-shell">
-      <button
-        type="button"
-        className="back-button"
-        onClick={() => {
-          setSelectedTechniqueId(null);
-        }}
-      >
-        ← Back to catalog
-      </button>
-      <PlayerView
-        technique={selectedTechnique}
-        playerName={selectedPlayer.name}
+    <div className="app-shell app-shell--catalog">
+      <CatalogPage
+        catalog={catalog}
+        onSelectTechnique={(playerId, techniqueId) =>
+          navigate({ view: "technique", playerId, techniqueId })
+        }
       />
     </div>
   );

@@ -17,10 +17,23 @@ export interface TechniqueManifest {
   };
 }
 
+export interface CameraLoadProgress {
+  index: number;
+  key: string;
+  name: string;
+  loaded: number;
+  total: number;
+  complete: boolean;
+}
+
 export interface CatalogTechnique {
   id: string;
   title: string;
   manifestUrl: string;
+  previewUrl?: string;
+  category?: "forehand" | "backhand" | "serve" | "footwork" | "fundamentals";
+  frameCount?: number;
+  cameraCount?: number;
 }
 
 export interface CatalogPlayer {
@@ -39,6 +52,7 @@ export type PlaybackStatus =
   | "loading_camera"
   | "ready"
   | "playing"
+  | "buffering"
   | "paused";
 
 export interface PlaybackSnapshot {
@@ -50,6 +64,11 @@ export interface PlaybackSnapshot {
   cameraCount: number;
   bufferProgress: number;
   bufferTotal: number;
+  cameraBufferProgress: number;
+  cameraBufferTotal: number;
+  cameraProgress: CameraLoadProgress[];
+  canPlay: boolean;
+  canSwitchCamera: boolean;
   playbackRate: number;
   error: string | null;
 }

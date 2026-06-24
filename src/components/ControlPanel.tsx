@@ -1,113 +1,106 @@
 interface ControlPanelProps {
   isPlaying: boolean;
+  isBuffering: boolean;
   canPlay: boolean;
   frameIndex: number;
   frameCount: number;
-  cameraIndex: number;
-  cameraCount: number;
   playbackRate: number;
   onTogglePlay: () => void;
   onPrevFrame: () => void;
   onNextFrame: () => void;
-  onPrevCamera: () => void;
-  onNextCamera: () => void;
   onSetPlaybackRate: (rate: number) => void;
   onSeek: (index: number) => void;
 }
 
 const SPEED_OPTIONS = [
-  { label: "100%", rate: 1 },
-  { label: "50%", rate: 0.5 },
-  { label: "25%", rate: 0.25 },
-  { label: "10%", rate: 0.1 },
+  { label: "1×", rate: 1 },
+  { label: "½×", rate: 0.5 },
+  { label: "¼×", rate: 0.25 },
+  { label: "⅒×", rate: 0.1 },
 ];
 
 export function ControlPanel({
   isPlaying,
+  isBuffering,
   canPlay,
   frameIndex,
   frameCount,
-  cameraIndex,
-  cameraCount,
   playbackRate,
   onTogglePlay,
   onPrevFrame,
   onNextFrame,
-  onPrevCamera,
-  onNextCamera,
   onSetPlaybackRate,
   onSeek,
 }: ControlPanelProps) {
   const maxFrameIndex = Math.max(frameCount - 1, 0);
 
   return (
-    <div className="control-panel">
-      <div className="control-row">
-        <button
-          type="button"
-          onClick={onPrevCamera}
-          disabled={cameraIndex <= 0}
-        >
-          ◀ Camera
-        </button>
-        <button
-          type="button"
-          onClick={onPrevFrame}
-          disabled={frameIndex <= 0}
-        >
-          ◀ Frame
-        </button>
-        <button type="button" onClick={onTogglePlay} disabled={!canPlay}>
-          {isPlaying ? "Pause" : "Play"}
-        </button>
-        <button
-          type="button"
-          onClick={onNextFrame}
-          disabled={frameIndex >= maxFrameIndex}
-        >
-          Frame ▶
-        </button>
-        <button
-          type="button"
-          onClick={onNextCamera}
-          disabled={cameraIndex >= cameraCount - 1}
-        >
-          Camera ▶
-        </button>
-      </div>
-
-      <div className="control-meta">
-        <span>
-          Camera {cameraIndex + 1} / {cameraCount}
-        </span>
-        <span>
-          Frame {frameIndex + 1} / {frameCount}
-        </span>
-      </div>
-
-      <label className="scrubber">
-        <span>Timeline</span>
-        <input
-          type="range"
-          min={0}
-          max={maxFrameIndex}
-          value={frameIndex}
-          onChange={(event) => onSeek(Number(event.target.value))}
-          disabled={frameCount === 0}
-        />
-      </label>
-
-      <div className="speed-row">
-        {SPEED_OPTIONS.map((option) => (
+    <div className="control-panel control-panel--transport">
+      <div className="transport-row">
+        <div className="transport-buttons" aria-label="Playback controls">
           <button
-            key={option.label}
             type="button"
-            className={playbackRate === option.rate ? "is-active" : ""}
-            onClick={() => onSetPlaybackRate(option.rate)}
+            className="transport-icon-button"
+            onClick={onPrevFrame}
+            disabled={frameIndex <= 0}
+            aria-label="Previous frame"
+            title="Previous frame (↑)"
           >
-            {option.label}
+            ◀
           </button>
-        ))}
+          <button
+            type="button"
+            onClick={onTogglePlay}
+            disabled={!canPlay && !isPlaying && !isBuffering}
+            className={`transport-play-button ${isBuffering ? "is-buffering" : ""}`}
+          >
+            {isBuffering ? "Buffering…" : isPlaying ? "Pause" : "Play"}
+          </button>
+          <button
+            type="button"
+            className="transport-icon-button"
+            onClick={onNextFrame}
+            disabled={frameIndex >= maxFrameIndex}
+            aria-label="Next frame"
+            title="Next frame (↓)"
+          >
+            ▶
+          </button>
+        </div>
+
+        <label className="transport-scrubber">
+          <div className="transport-scrubber-meta">
+            <span>Timeline</span>
+            <span>
+              Frame {frameIndex + 1} / {frameCount}
+            </span>
+          </div>
+          <input
+            type="range"
+            min={0}
+            max={maxFrameIndex}
+            value={frameIndex}
+            onChange={(event) => onSeek(Number(event.target.value))}
+            disabled={frameCount === 0}
+          />
+        </label>
+
+        <div className="transport-speed" aria-label="Playback speed">
+          <span className="transport-speed-label">Speed</span>
+          <div className="speed-segment">
+            {SPEED_OPTIONS.map((option) => (
+              <button
+                key={option.rate}
+                type="button"
+                className={playbackRate === option.rate ? "is-active" : ""}
+                onClick={() => onSetPlaybackRate(option.rate)}
+                title={`${option.label} speed`}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -16,6 +16,8 @@ const PLAYER_ID = "biba";
 
 function parseArgs(argv) {
   const cdnMode = argv.includes("--cdn");
+  const catalogOnly = argv.includes("--catalog-only");
+  const techniqueId = argv.find((arg) => !arg.startsWith("--")) ?? null;
   const configPath = path.join(__dirname, "../cdn.config.json");
   let cdnBaseUrl = process.env.CDN_BASE_URL ?? null;
 
@@ -32,6 +34,8 @@ function parseArgs(argv) {
 
   return {
     cdnMode,
+    catalogOnly,
+    techniqueId,
     cdnBaseUrl: cdnBaseUrl?.replace(/\/+$/, "") ?? null,
   };
 }
@@ -196,10 +200,70 @@ function generateManifest(technique, mode) {
   };
 }
 
+function categorizeTechnique(technique) {
+  const { id, title } = technique;
+
+  if (
+    id === "60-ready-position" ||
+    id === "61-one-step" ||
+    id === "62-turn" ||
+    id === "63-recover-from-serve" ||
+    id === "64-cross-step"
+  ) {
+    return "footwork";
+  }
+
+  if (id.startsWith("11-")) {
+    return "fundamentals";
+  }
+
+  if (/serve|tomahawk/i.test(id) || /serve|tomahawk/i.test(title)) {
+    return "serve";
+  }
+
+  if (
+    /^(\d+[a-z]?-)?fh-/i.test(id) ||
+    title.startsWith("FH ") ||
+    /^(\d+[a-z]?-)?fh/i.test(title)
+  ) {
+    return "forehand";
+  }
+
+  if (
+    /^(\d+[a-z]?-)?bh-/i.test(id) ||
+    title.startsWith("BH ") ||
+    /bh/i.test(id)
+  ) {
+    return "backhand";
+  }
+
+  return "forehand";
+}
+
+function buildPreviewUrl(manifest) {
+  const firstCameraKey = manifest.cameras[0]?.key;
+  const firstFrame = firstCameraKey
+    ? manifest.frames[firstCameraKey]?.[0]
+    : null;
+
+  if (!firstFrame) {
+    return null;
+  }
+
+  return `${manifest.baseUrl}/${encodeURIComponent(firstFrame)}`;
+}
+
 function generateCatalog(manifestFiles) {
   const players = new Map();
 
-  for (const { technique, manifestUrl } of manifestFiles) {
+  for (const {
+    technique,
+    manifestUrl,
+    previewUrl,
+    category,
+    frameCount,
+    cameraCount,
+  } of manifestFiles) {
     if (!players.has(technique.playerId)) {
       players.set(technique.playerId, {
         id: technique.playerId,
@@ -212,6 +276,10 @@ function generateCatalog(manifestFiles) {
       id: technique.id,
       title: technique.title,
       manifestUrl,
+      previewUrl,
+      category,
+      frameCount,
+      cameraCount,
     });
   }
 
@@ -222,6 +290,73 @@ function generateCatalog(manifestFiles) {
   }
 
   return { players: [...players.values()] };
+}
+
+function buildCatalogEntryFromManifest(manifest, cdnBaseUrl) {
+  const techniquePath = `players/${manifest.playerId}/techniques/${manifest.id}`;
+  const firstCameraKey = manifest.cameras[0]?.key;
+  const firstFrame = firstCameraKey
+    ? manifest.frames[firstCameraKey]?.[0]
+    : null;
+
+  return {
+    technique: {
+      id: manifest.id,
+      title: manifest.title,
+      playerId: manifest.playerId,
+    },
+    manifestUrl: `${cdnBaseUrl}/${techniquePath}/manifest.json`,
+    previewUrl: firstFrame
+      ? `${cdnBaseUrl}/${techniquePath}/${encodeURIComponent(firstFrame)}`
+      : null,
+    category: categorizeTechnique({
+      id: manifest.id,
+      title: manifest.title,
+    }),
+    frameCount: manifest.frameCount,
+    cameraCount: manifest.cameras.length,
+  };
+}
+
+function generateCatalogFromPublicManifests(cdnBaseUrl) {
+  if (!fs.existsSync(publicManifestsDir)) {
+    throw new Error("public/manifests not found. Run: npm run generate-manifest");
+  }
+
+  const manifestFiles = fs
+    .readdirSync(publicManifestsDir)
+    .filter((name) => name.endsWith(".json"))
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+    .map((name) => {
+      const manifest = JSON.parse(
+        fs.readFileSync(path.join(publicManifestsDir, name), "utf8"),
+      );
+      return buildCatalogEntryFromManifest(manifest, cdnBaseUrl);
+    });
+
+  return generateCatalog(manifestFiles);
+}
+
+function writeCatalogFiles(catalog, mode) {
+  const catalogPath = mode.cdnMode
+    ? path.join(cdnStagingDir, "catalog.json")
+    : path.join(publicDir, "catalog.json");
+  const playerCatalogPath = mode.cdnMode
+    ? path.join(cdnStagingDir, "players", PLAYER_ID, "catalog.json")
+    : null;
+
+  fs.mkdirSync(path.dirname(catalogPath), { recursive: true });
+  fs.writeFileSync(catalogPath, `${JSON.stringify(catalog, null, 2)}\n`);
+
+  if (playerCatalogPath) {
+    fs.mkdirSync(path.dirname(playerCatalogPath), { recursive: true });
+    fs.writeFileSync(
+      playerCatalogPath,
+      `${JSON.stringify(catalog.players[0], null, 2)}\n`,
+    );
+  }
+
+  return catalogPath;
 }
 
 function writeManifestOutputs(manifest, technique, mode) {
@@ -255,20 +390,54 @@ function writeManifestOutputs(manifest, technique, mode) {
 
 function main() {
   const mode = parseArgs(process.argv.slice(2));
+
+  if (mode.catalogOnly) {
+    if (!mode.cdnMode) {
+      throw new Error("--catalog-only requires --cdn");
+    }
+
+    fs.mkdirSync(cdnStagingDir, { recursive: true });
+    const catalog = generateCatalogFromPublicManifests(mode.cdnBaseUrl);
+    const catalogPath = writeCatalogFiles(catalog, mode);
+
+    console.log("Generated CDN catalog only (no JPG staging).");
+    console.log(`CDN base: ${mode.cdnBaseUrl}`);
+    console.log(`Catalog: ${catalogPath}`);
+    console.log(`Techniques: ${catalog.players[0]?.techniques.length ?? 0}`);
+    console.log("Next: npm run upload-r2:catalog");
+    return;
+  }
+
   const { techniques, skipped } = discoverTechniques();
   const manifestFiles = [];
   const failures = [];
 
-  if (mode.cdnMode) {
+  const selectedTechniques = mode.techniqueId
+    ? techniques.filter((technique) => technique.id === mode.techniqueId)
+    : techniques;
+
+  if (mode.techniqueId && selectedTechniques.length === 0) {
+    throw new Error(`Technique not found: ${mode.techniqueId}`);
+  }
+
+  if (mode.cdnMode && !mode.techniqueId) {
     fs.rmSync(cdnStagingDir, { recursive: true, force: true });
+    fs.mkdirSync(cdnStagingDir, { recursive: true });
+  } else if (mode.cdnMode) {
     fs.mkdirSync(cdnStagingDir, { recursive: true });
   }
 
-  for (const technique of techniques) {
+  for (const technique of selectedTechniques) {
     try {
       const manifest = generateManifest(technique, mode);
       const manifestFile = writeManifestOutputs(manifest, technique, mode);
-      manifestFiles.push(manifestFile);
+      manifestFiles.push({
+        ...manifestFile,
+        previewUrl: buildPreviewUrl(manifest),
+        category: categorizeTechnique(technique),
+        frameCount: manifest.frameCount,
+        cameraCount: manifest.cameras.length,
+      });
       console.log(
         `✓ ${technique.id} (${manifest.frameCount} frames, ${manifest.cameras.length} cameras)`,
       );
@@ -281,23 +450,10 @@ function main() {
     }
   }
 
-  const catalog = generateCatalog(manifestFiles);
-  const catalogPath = mode.cdnMode
-    ? path.join(cdnStagingDir, "catalog.json")
-    : path.join(publicDir, "catalog.json");
-  const playerCatalogPath = mode.cdnMode
-    ? path.join(cdnStagingDir, "players", PLAYER_ID, "catalog.json")
-    : null;
-
-  fs.writeFileSync(catalogPath, `${JSON.stringify(catalog, null, 2)}\n`);
-
-  if (playerCatalogPath) {
-    fs.mkdirSync(path.dirname(playerCatalogPath), { recursive: true });
-    fs.writeFileSync(
-      playerCatalogPath,
-      `${JSON.stringify(catalog.players[0], null, 2)}\n`,
-    );
-  }
+  const catalog = mode.cdnMode
+    ? generateCatalogFromPublicManifests(mode.cdnBaseUrl)
+    : generateCatalog(manifestFiles);
+  const catalogPath = writeCatalogFiles(catalog, mode);
 
   console.log("");
   if (mode.cdnMode) {
@@ -305,7 +461,11 @@ function main() {
     console.log(`CDN base: ${mode.cdnBaseUrl}`);
     console.log(`Staging dir: ${cdnStagingDir}`);
     console.log(`Catalog: ${catalogPath}`);
-    console.log("Next: npm run upload-r2");
+    if (mode.techniqueId) {
+      console.log(`Next: npm run upload-r2 -- ${mode.techniqueId}`);
+    } else {
+      console.log("Next: npm run upload-r2");
+    }
   } else {
     console.log(`Generated ${manifestFiles.length} local manifest(s) and catalog.json`);
   }

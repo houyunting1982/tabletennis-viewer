@@ -29,9 +29,16 @@ function loadConfig() {
 }
 
 function parseArgs(argv) {
-  const techniqueId = argv.find((arg) => !arg.startsWith("--")) ?? null;
+  const catalogOnly = argv.includes("--catalog-only");
+  const techniqueId =
+    argv.find((arg) => !arg.startsWith("--")) ?? null;
   const dryRun = argv.includes("--dry-run");
-  return { techniqueId, dryRun };
+
+  if (catalogOnly && techniqueId) {
+    throw new Error("Use either --catalog-only or a technique id, not both.");
+  }
+
+  return { techniqueId, catalogOnly, dryRun };
 }
 
 function walkFiles(dir) {
@@ -103,7 +110,7 @@ function discoverTechniqueDirs(techniqueId) {
 }
 
 async function main() {
-  const { techniqueId, dryRun } = parseArgs(process.argv.slice(2));
+  const { techniqueId, catalogOnly, dryRun } = parseArgs(process.argv.slice(2));
   const config = loadConfig();
   const client = new S3Client({
     region: "auto",
@@ -113,6 +120,34 @@ async function main() {
       secretAccessKey: config.r2.secretAccessKey,
     },
   });
+
+  if (catalogOnly) {
+    console.log(
+      `${dryRun ? "Dry run" : "Uploading"} catalog only to ${config.r2.bucket}`,
+    );
+
+    for (const catalogKey of ["catalog.json", "players/biba/catalog.json"]) {
+      const localCatalogPath = path.join(cdnStagingDir, catalogKey);
+      if (!fs.existsSync(localCatalogPath)) {
+        throw new Error(
+          `Missing ${catalogKey}. Run: npm run generate-catalog:cdn`,
+        );
+      }
+
+      await uploadFile(
+        client,
+        config.r2.bucket,
+        catalogKey,
+        localCatalogPath,
+        dryRun,
+      );
+    }
+
+    console.log("");
+    console.log(dryRun ? "Dry run complete." : "Catalog upload complete.");
+    console.log(`CDN catalog: ${config.cdnBaseUrl}/catalog.json`);
+    return;
+  }
 
   const techniqueDirs = discoverTechniqueDirs(techniqueId);
   console.log(

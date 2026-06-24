@@ -1,13 +1,21 @@
 import { FrameClock } from "./frameClock";
 import { fetchManifest } from "./manifest";
 import {
+  areAllCamerasReady,
+  buildCameraProgress,
+  countLoadedCameraFrames,
+  countLoadedFrames,
   createEmptyFrameCache,
-  isSliceReady,
-  loadTechniqueFrameSlices,
+  getPrimaryCamera,
+  isCameraFrameReady,
+  isCameraTrackComplete,
   releaseFrameCache,
+  startPhasedTechniqueLoad,
   type FrameCache,
+  type PhasedTechniqueLoader,
 } from "./techniqueBufferLoader";
 import type {
+  CameraLoadProgress,
   DecodedFrame,
   PlaybackListener,
   PlaybackSnapshot,
@@ -16,6 +24,7 @@ import type {
 } from "./types";
 
 const DEFAULT_PLAYBACK_RATE = 1;
+const PROGRESS_EMIT_MS = 250;
 
 export class PlaybackEngine {
   private manifest: TechniqueManifest | null = null;
@@ -24,10 +33,17 @@ export class PlaybackEngine {
   private status: PlaybackStatus = "idle";
   private bufferProgress = 0;
   private bufferTotal = 0;
+  private cameraBufferProgress = 0;
+  private cameraBufferTotal = 0;
+  private cameraProgress: CameraLoadProgress[] = [];
   private playbackRate = DEFAULT_PLAYBACK_RATE;
   private error: string | null = null;
   private readonly frameCache: FrameCache = new Map();
   private loadingToken = 0;
+  private activeLoader: PhasedTechniqueLoader | null = null;
+  private resumeAfterBuffer = false;
+  private lastProgressEmitMs = 0;
+  private progressEmitTimer: ReturnType<typeof setTimeout> | null = null;
   private readonly listeners = new Set<PlaybackListener>();
   private readonly clock: FrameClock;
 
@@ -55,6 +71,7 @@ export class PlaybackEngine {
     try {
       this.manifest = await fetchManifest(url);
       this.clock.setFps(this.manifest.timing.fps);
+      this.cameraIndex = 0;
       await this.loadTechniqueBuffers();
     } catch (err) {
       this.status = "idle";
@@ -73,9 +90,42 @@ export class PlaybackEngine {
       return;
     }
 
-    this.pause();
+    const cameraKey = this.manifest.cameras[clamped].key;
+    if (!isCameraTrackComplete(this.manifest, this.frameCache, cameraKey)) {
+      return;
+    }
+
     this.cameraIndex = clamped;
+    this.syncLoaderContext();
+    this.syncProgressMetrics();
     this.emit();
+  }
+
+  stepCamera(delta: number) {
+    if (!this.manifest) {
+      return;
+    }
+
+    const readyIndices = this.manifest.cameras
+      .map((camera, index) =>
+        isCameraTrackComplete(this.manifest!, this.frameCache, camera.key)
+          ? index
+          : null,
+      )
+      .filter((index): index is number => index !== null);
+
+    if (readyIndices.length === 0) {
+      return;
+    }
+
+    const currentPos = readyIndices.indexOf(this.cameraIndex);
+    const startPos = currentPos === -1 ? (delta > 0 ? -1 : readyIndices.length) : currentPos;
+    const nextPos = startPos + delta;
+    if (nextPos < 0 || nextPos >= readyIndices.length) {
+      return;
+    }
+
+    this.setCameraIndex(readyIndices[nextPos]);
   }
 
   setFrameIndex(index: number) {
@@ -83,11 +133,15 @@ export class PlaybackEngine {
       return;
     }
 
-    this.pause();
-    this.frameIndex = clamp(index, 0, this.manifest.frameCount - 1);
-    if (this.isTrackComplete()) {
-      this.status = "ready";
+    const wasPlaying = this.status === "playing";
+    if (!wasPlaying) {
+      this.pause();
     }
+
+    this.frameIndex = clamp(index, 0, this.manifest.frameCount - 1);
+    this.syncLoaderContext();
+    this.syncProgressMetrics();
+    this.updateReadyState();
     this.emit();
   }
 
@@ -96,17 +150,21 @@ export class PlaybackEngine {
       return;
     }
 
-    this.pause();
+    const wasPlaying = this.status === "playing";
+    if (!wasPlaying) {
+      this.pause();
+    }
+
     const next = this.frameIndex + delta;
     this.frameIndex = clamp(next, 0, this.manifest.frameCount - 1);
-    if (this.isTrackComplete()) {
-      this.status = "ready";
-    }
+    this.syncLoaderContext();
+    this.syncProgressMetrics();
+    this.updateReadyState();
     this.emit();
   }
 
   play() {
-    if (!this.manifest || !this.isTrackComplete()) {
+    if (!this.manifest || !this.canPlay()) {
       return;
     }
 
@@ -114,19 +172,23 @@ export class PlaybackEngine {
       return;
     }
 
+    this.resumeAfterBuffer = false;
     this.status = "playing";
+    this.syncLoaderContext();
     this.clock.setFps(this.manifest.timing.fps * this.playbackRate);
     this.clock.start();
     this.emit();
   }
 
   pause() {
-    if (this.status !== "playing") {
+    if (this.status !== "playing" && this.status !== "buffering") {
       return;
     }
 
     this.clock.stop();
+    this.resumeAfterBuffer = false;
     this.status = "ready";
+    this.syncLoaderContext();
     this.emit();
   }
 
@@ -156,12 +218,25 @@ export class PlaybackEngine {
     return this.frameCache.get(cameraKey)?.[this.frameIndex] ?? null;
   }
 
-  isCurrentSliceReady(): boolean {
+  canPlay(): boolean {
     if (!this.manifest) {
       return false;
     }
 
-    return isSliceReady(this.manifest, this.frameCache, this.frameIndex);
+    const primaryCamera = getPrimaryCamera(this.manifest);
+    return isCameraTrackComplete(
+      this.manifest,
+      this.frameCache,
+      primaryCamera.key,
+    );
+  }
+
+  canSwitchCamera(): boolean {
+    if (!this.manifest) {
+      return false;
+    }
+
+    return areAllCamerasReady(this.manifest, this.frameCache);
   }
 
   dispose() {
@@ -176,48 +251,68 @@ export class PlaybackEngine {
 
     const token = ++this.loadingToken;
     this.status = "loading_camera";
-    this.bufferProgress = 0;
-    this.bufferTotal = this.manifest.frameCount;
     this.error = null;
     this.frameCache.clear();
     createEmptyFrameCache(this.manifest).forEach((track, key) => {
       this.frameCache.set(key, track);
     });
-    this.emit();
+    this.syncProgressMetrics();
+    this.emitProgress(true);
 
-    try {
-      await loadTechniqueFrameSlices(this.manifest, this.frameCache, {
-        cameraConcurrency: 12,
-        shouldAbort: () => token !== this.loadingToken,
-        onProgress: (loaded, total) => {
+    const loader = startPhasedTechniqueLoad(
+      this.manifest,
+      this.frameCache,
+      {
+        getFrameIndex: () => this.frameIndex,
+        getCameraIndex: () => this.cameraIndex,
+        getIsPlaying: () =>
+          this.status === "playing" || this.status === "buffering",
+      },
+      {
+        onProgress: () => {
           if (token !== this.loadingToken) {
             return;
           }
-          this.bufferProgress = loaded;
-          this.bufferTotal = total;
-          this.emit();
+          this.emitProgress();
         },
-        onSliceLoaded: (frameIndex) => {
+        onFrameLoaded: (cameraKey, frameIndex) => {
           if (token !== this.loadingToken) {
             return;
           }
 
-          if (frameIndex === 0) {
-            this.status = "ready";
-          }
-
-          if (frameIndex === this.frameIndex) {
+          const primaryKey = getPrimaryCamera(this.manifest!).key;
+          const currentKey = this.manifest!.cameras[this.cameraIndex].key;
+          if (
+            (cameraKey === primaryKey || cameraKey === currentKey) &&
+            frameIndex === this.frameIndex
+          ) {
             this.emit();
           }
+
+          if (this.status === "buffering" && this.canPlay()) {
+            this.tryResumePlayback();
+            return;
+          }
+
+          if (this.status === "playing") {
+            this.tryAdvanceOrStall();
+          }
         },
-      });
+      },
+    );
+
+    this.activeLoader = loader;
+
+    try {
+      await loader.done;
 
       if (token !== this.loadingToken) {
         return;
       }
 
-      this.status = "ready";
-      this.emit();
+      this.syncProgressMetrics();
+      this.updateReadyState();
+      this.emitProgress(true);
     } catch (err) {
       if (token !== this.loadingToken) {
         return;
@@ -230,50 +325,168 @@ export class PlaybackEngine {
       this.status = "idle";
       this.error = err instanceof Error ? err.message : "Failed to load frames";
       this.emit();
+    } finally {
+      if (this.activeLoader === loader) {
+        this.activeLoader = null;
+      }
     }
   }
 
-  private advanceFrame(loop: boolean) {
-    if (!this.manifest || !this.isTrackComplete()) {
+  private emitProgress(force = false) {
+    const now = performance.now();
+    if (force || now - this.lastProgressEmitMs >= PROGRESS_EMIT_MS) {
+      if (this.progressEmitTimer) {
+        clearTimeout(this.progressEmitTimer);
+        this.progressEmitTimer = null;
+      }
+      this.lastProgressEmitMs = now;
+      this.syncProgressMetrics();
+      this.updateReadyState();
+      this.emit();
       return;
     }
 
-    const next = this.frameIndex + 1;
-    if (next >= this.manifest.frameCount) {
-      if (loop) {
-        this.frameIndex = 0;
-      } else {
-        this.pause();
-        this.frameIndex = this.manifest.frameCount - 1;
-      }
-    } else {
-      this.frameIndex = next;
+    if (this.progressEmitTimer) {
+      return;
     }
 
+    this.progressEmitTimer = setTimeout(() => {
+      this.progressEmitTimer = null;
+      this.emitProgress(true);
+    }, PROGRESS_EMIT_MS);
+  }
+
+  private syncLoaderContext() {
+    this.activeLoader?.setContext({
+      getFrameIndex: () => this.frameIndex,
+      getCameraIndex: () => this.cameraIndex,
+      getIsPlaying: () =>
+        this.status === "playing" || this.status === "buffering",
+    });
+  }
+
+  private syncProgressMetrics() {
+    if (!this.manifest) {
+      return;
+    }
+
+    const primaryCamera = getPrimaryCamera(this.manifest);
+    this.cameraBufferProgress = countLoadedCameraFrames(
+      this.frameCache,
+      primaryCamera.key,
+    );
+    this.cameraBufferTotal = this.manifest.frameCount;
+    this.bufferProgress = countLoadedFrames(this.frameCache);
+    this.bufferTotal = this.manifest.frameCount * this.manifest.cameras.length;
+    this.cameraProgress = buildCameraProgress(this.manifest, this.frameCache);
+  }
+
+  private updateReadyState() {
+    if (!this.manifest) {
+      return;
+    }
+
+    if (this.status === "playing" || this.status === "buffering") {
+      return;
+    }
+
+    if (this.canPlay() || this.getCurrentFrame()) {
+      this.status = "ready";
+      return;
+    }
+
+    if (this.status !== "loading_manifest") {
+      this.status = "loading_camera";
+    }
+  }
+
+  private tryResumePlayback() {
+    if (!this.manifest || !this.canPlay() || !this.resumeAfterBuffer) {
+      return;
+    }
+
+    const cameraKey = this.manifest.cameras[this.cameraIndex].key;
+    if (!isCameraFrameReady(this.frameCache, cameraKey, this.frameIndex)) {
+      return;
+    }
+
+    this.resumeAfterBuffer = false;
+    this.status = "playing";
+    this.syncLoaderContext();
+    this.clock.setFps(this.manifest.timing.fps * this.playbackRate);
+    this.clock.start();
     this.emit();
+  }
+
+  private tryAdvanceOrStall() {
+    if (!this.manifest || this.status !== "playing") {
+      return;
+    }
+
+    const cameraKey = this.manifest.cameras[this.cameraIndex].key;
+    const nextIndex = this.frameIndex + 1;
+
+    if (nextIndex >= this.manifest.frameCount) {
+      this.frameIndex = 0;
+      if (!isCameraFrameReady(this.frameCache, cameraKey, this.frameIndex)) {
+        this.stallPlayback();
+      } else {
+        this.syncLoaderContext();
+        this.emit();
+      }
+      return;
+    }
+
+    if (isCameraFrameReady(this.frameCache, cameraKey, nextIndex)) {
+      this.frameIndex = nextIndex;
+      this.syncLoaderContext();
+      this.emit();
+      return;
+    }
+
+    this.stallPlayback();
+  }
+
+  private stallPlayback() {
+    this.clock.stop();
+    this.resumeAfterBuffer = true;
+    this.status = "buffering";
+    this.syncLoaderContext();
+    this.emit();
+  }
+
+  private advanceFrame(_loop: boolean) {
+    if (!this.manifest || this.status !== "playing") {
+      return;
+    }
+
+    this.tryAdvanceOrStall();
   }
 
   private resetPlayback() {
     this.loadingToken += 1;
     this.clock.stop();
+    this.activeLoader?.abort();
+    this.activeLoader = null;
+    if (this.progressEmitTimer) {
+      clearTimeout(this.progressEmitTimer);
+      this.progressEmitTimer = null;
+    }
     releaseFrameCache(this.frameCache);
     this.manifest = null;
     this.cameraIndex = 0;
     this.frameIndex = 0;
     this.bufferProgress = 0;
     this.bufferTotal = 0;
+    this.cameraBufferProgress = 0;
+    this.cameraBufferTotal = 0;
+    this.cameraProgress = [];
     this.playbackRate = DEFAULT_PLAYBACK_RATE;
+    this.resumeAfterBuffer = false;
+    this.lastProgressEmitMs = 0;
     this.error = null;
     this.status = "idle";
     this.emit();
-  }
-
-  private isTrackComplete() {
-    if (!this.manifest) {
-      return false;
-    }
-
-    return this.bufferProgress >= this.bufferTotal;
   }
 
   private getSnapshot(): PlaybackSnapshot {
@@ -286,6 +499,11 @@ export class PlaybackEngine {
       cameraCount: this.manifest?.cameras.length ?? 0,
       bufferProgress: this.bufferProgress,
       bufferTotal: this.bufferTotal,
+      cameraBufferProgress: this.cameraBufferProgress,
+      cameraBufferTotal: this.cameraBufferTotal,
+      cameraProgress: this.cameraProgress,
+      canPlay: this.canPlay(),
+      canSwitchCamera: this.canSwitchCamera(),
       playbackRate: this.playbackRate,
       error: this.error,
     };
